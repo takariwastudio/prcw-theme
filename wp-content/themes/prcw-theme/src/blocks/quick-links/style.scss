@@ -1,0 +1,76 @@
+.prcw-quick-links {
+  // ===== Mobile (base) =====
+  padding: 60px 20px;
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  &__item {
+    width: 100%;
+  }
+
+  &__divider {
+    border-top: 5px solid #7a7a7a;
+    margin-bottom: 15px;
+  }
+
+  &__heading {
+    font-family: "League Spartan", sans-serif;
+    font-weight: 700;
+    color: #7a7a7a;
+    font-size: var(--wp--preset--font-size--lg);
+    line-height: 1.1;
+    margin-bottom: 15px;
+    max-width: 290px;
+  }
+
+  &__button {
+    display: inline-block;
+    background: #f04d4f;
+    color: #ffffff;
+    font-family: "Jost", sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: var(--wp--preset--font-size--sm);
+    line-height: 1;
+    padding: 20px;
+    text-decoration: none;
+  }
+
+  // ===== Tablet (768px+) =====
+  @media (min-width: 768px) {
+    padding: 100px 40px;
+
+    &__inner {
+      flex-direction: row;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    &__item {
+      flex: 1;
+      padding: 0 10px;
+      max-width: none;
+    }
+
+    &__heading {
+      max-width: none;
+    }
+  }
+
+  // ===== Desktop (1024px+) =====
+  @media (min-width: 1024px) {
+    padding: 100px 80px;
+
+    &__item {
+      max-width: 549px;
+    }
+
+    &__heading {
+      margin-bottom: 20px;
+    }
+  }
+}

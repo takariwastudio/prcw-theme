@@ -1,0 +1,15 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "prcw/footer",
+  "title": "PRCW Footer",
+  "category": "prcw-blocks",
+  "icon": "sticky",
+  "description": "Footer completo del sitio, controlado desde Footer Settings (ACF Options).",
+  "acf": { "mode": "preview", "renderTemplate": "render.php" },
+  "supports": { "align": ["full"] },
+  "textdomain": "prcw-theme",
+  "editorScript": "file:./index.js",
+  "style": "file:./style-index.css",
+  "editorStyle": "file:./index.css"
+}

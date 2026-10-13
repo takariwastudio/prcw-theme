@@ -1,0 +1,120 @@
+/* Fondo con patrón, detrás del contenido */
+.prcw-header {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.prcw-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("../images/header-pattern.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top left;
+  opacity: 0.71;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.prcw-header > * {
+  position: relative;
+  z-index: 1;
+}
+
+.prcw-header__inner {
+  width: 100%;
+}
+
+.prcw-header__logo img {
+  max-width: 100px;
+  height: auto;
+}
+
+/* El menú de navegación se oculta detrás del overlay en mobile (comportamiento nativo del bloque) */
+.prcw-header__nav a {
+  font-family: "League Spartan", sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  font-size: var(--wp--preset--font-size--base);
+transition: color 0.2s ease;
+}
+
+.prcw-header__nav .wp-block-navigation-item__content:hover,
+.prcw-header__nav .wp-block-navigation-item__content:focus {
+  color: var(--wp--preset--color--teal, #43c2d2) !important;
+}
+
+.prcw-header__nav .wp-block-navigation-item__content[aria-current="page"] {
+  color: var(--wp--preset--color--accent, #f04d4f) !important;
+}
+
+.prcw-header__actions {
+  gap: 12px;
+  z-index: 1;
+}
+
+/* Íconos sociales en gris, sin fondo de color de marca */
+.prcw-header__social .wp-social-link {
+  background: none !important;
+}
+
+.prcw-header__social .wp-social-link svg {
+  fill: #7a7a7a !important;
+}
+
+.prcw-header__social a svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Mini-cart estilo botón rojo, como en el diseño */
+.prcw-header__cart .wc-block-mini-cart__button {
+  background-color: var(--wp--preset--color--accent);
+  color: #ffffff;
+  border-radius: 0;
+  padding: 12px 20px;
+  font-family: "League Spartan", sans-serif;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: var(--wp--preset--font-size--base);
+}
+
+.prcw-header__cart .wc-block-mini-cart__amount {
+  color: #ffffff;
+}
+
+/* ===== Tablet en adelante ===== */
+@media (min-width: 782px) {
+  .prcw-header__inner {
+    padding: 20px 40px;
+    gap: 24px;
+  }
+
+  .prcw-header__logo img {
+    max-width: 130px;
+  }
+}
+
+/* ===== Desktop — replica el spacing exacto del diseño Figma ===== */
+@media (min-width: 1280px) {
+  .prcw-header__inner {
+    padding: 20px 60px;
+  }
+
+  .prcw-header__nav a {
+    letter-spacing: -1px;
+  }
+}
+
+/* El overlay del menú mobile debe ir POR ENCIMA de logo/social/carrito */
+.wp-block-navigation__responsive-dialog {
+  z-index: 9999 !important;
+}
+
+.prcw-header__nav {
+  z-index: 2;
+  position: relative;
+}

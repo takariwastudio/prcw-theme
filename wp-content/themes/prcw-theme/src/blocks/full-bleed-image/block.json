@@ -1,0 +1,16 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "prcw/full-bleed-image",
+  "title": "PRCW Full Bleed Image",
+  "category": "prcw-blocks",
+  "icon": "format-image",
+  "description": "Imagen a pantalla completa con animación de entrada al hacer scroll y hover sutil en desktop.",
+  "acf": { "mode": "preview", "renderTemplate": "render.php" },
+  "supports": { "align": ["full"] },
+  "textdomain": "prcw-theme",
+  "editorScript": "file:./index.js",
+  "viewScript": "file:./view.js",
+  "style": "file:./style-index.css",
+  "editorStyle": "file:./index.css"
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "prcw/sponsors",
+  "title": "PRCW Sponsors",
+  "category": "prcw-blocks",
+  "icon": "awards",
+  "description": "Grid de logos de sponsors, con niveles de tamaño (jerarquía visual), totalmente flexible.",
+  "acf": { "mode": "preview", "renderTemplate": "render.php" },
+  "supports": { "align": ["wide", "full"] },
+  "textdomain": "prcw-theme",
+  "editorScript": "file:./index.js",
+"viewScript": "file:./view.js",
+  "style": "file:./style-index.css",
+  "editorStyle": "file:./index.css"
+}

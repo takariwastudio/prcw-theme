@@ -1,0 +1,16 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "prcw/donation",
+  "title": "PRCW Donation",
+  "category": "prcw-blocks",
+  "icon": "heart",
+  "description": "Card de donación (Tip Jar) con precio libre vía WooCommerce + Name Your Price.",
+  "acf": { "mode": "preview", "renderTemplate": "render.php" },
+  "supports": { "align": ["full"] },
+  "textdomain": "prcw-theme",
+  "editorScript": "file:./index.js",
+  "viewScript": "file:./view.js",
+  "style": "file:./style-index.css",
+  "editorStyle": "file:./index.css"
+}

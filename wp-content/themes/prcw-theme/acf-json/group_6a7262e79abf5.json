@@ -1,0 +1,173 @@
+{
+    "key": "group_6a7262e79abf5",
+    "title": "Notice CTA - Campos",
+    "fields": [
+        {
+            "key": "field_6a7262e7c87be",
+            "label": "Texto del botón",
+            "name": "button_label",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "APPLY HERE",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_6a72630ec87bf",
+            "label": "URL del botón",
+            "name": "button_url",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "allow_in_bindings": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_6a726325c87c0",
+            "label": "Ícono",
+            "name": "icon",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "handshake": "🤝 Handshake (Coaching)",
+                "users": "👥 Users (Grupo)",
+                "message-heads": "💬 Counseling (Chat + Cabezas)",
+                "lightbulb": "💡 Lightbulb (Workshops)",
+                "heart": "❤️ Heart (Bienestar)",
+                "shield": "🛡️ Shield (Protección)",
+                "phone-call": "📞 Phone Call",
+                "calendar": "📅 Calendar",
+                "clipboard-check": "✅ Clipboard Check",
+                "graduation-cap": "🎓 Graduation Cap",
+                "briefcase": "💼 Briefcase",
+                "star": "⭐ Star",
+                "check-circle": "✔️ Check Circle",
+                "map-pin": "📍 Map Pin",
+                "mail": "✉️ Mail",
+                "sparkles": "✨ Sparkles",
+                "award": "🏆 Award",
+                "brain": "🧠 Brain (Psicología)",
+                "alert-circle": "⚠️ Alert Circle"
+            },
+            "default_value": "alert-circle",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "create_options": 0,
+            "save_options": 0
+        },
+        {
+            "key": "field_6a7263d1c87c1",
+            "label": "Texto",
+            "name": "text",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "rows": "",
+            "placeholder": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_6a7263dac87c2",
+            "label": "Texto del link",
+            "name": "link_label",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_6a7263e8c87c3",
+            "label": "URL del link",
+            "name": "link_url",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "allow_in_bindings": 0,
+            "placeholder": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "prcw\/notice-cta"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1785881887
+}

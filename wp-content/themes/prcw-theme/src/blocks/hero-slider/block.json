@@ -1,0 +1,15 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "prcw/hero-slider",
+  "title": "PRCW Hero Slider",
+  "category": "prcw-blocks",
+  "icon": "images-alt2",
+  "description": "Slider principal del homepage. Cada slide puede tener layout centrado o imagen+texto lateral.",
+  "acf": { "mode": "preview", "renderTemplate": "render.php" },
+  "supports": { "align": ["full"] },
+  "textdomain": "prcw-theme",
+  "viewScript": "file:./index.js",
+  "style": "file:./style-index.css",
+  "editorStyle": "file:./index.css"
+}

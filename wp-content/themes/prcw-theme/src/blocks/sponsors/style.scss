@@ -1,0 +1,119 @@
+.prcw-sponsors {
+  background: #ffffff;
+  padding: 48px 20px;
+
+  &__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  &__title {
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    font-size: var(--wp--preset--font-size--xs);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #494848;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  &__tabs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 36px;
+    border-bottom: 1px solid #e4e4e4;
+  }
+
+  &__tab {
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    padding: 12px 20px;
+    font-family: "League Spartan", sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: var(--wp--preset--font-size--xs);
+    color: #9c9c9c;
+    cursor: pointer;
+    transition:
+      color 0.2s ease,
+      border-color 0.2s ease;
+
+    &:hover {
+      color: #494848;
+    }
+
+    &.is-active {
+      color: #f04d4f;
+      border-bottom-color: #f04d4f;
+    }
+  }
+
+  &__panel {
+    display: none;
+
+    &.is-active {
+      display: block;
+    }
+  }
+
+  &__grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+
+  &__card {
+    background: #ffffff;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    width: 200px;
+    height: 100px;
+  }
+
+  &__logo {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    opacity: 0.85;
+    filter: grayscale(60%);
+    transition:
+      opacity 0.2s ease,
+      filter 0.2s ease;
+  }
+
+  &__card:hover &__logo {
+    opacity: 1;
+    filter: grayscale(0%);
+  }
+
+  &__list {
+    text-align: center;
+    font-family: "League Spartan", sans-serif;
+    color: #7a7a7a;
+    font-size: var(--wp--preset--font-size--xs);
+    line-height: 1.8;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 767px) {
+    &__tab {
+      padding: 10px 14px;
+    }
+
+    &__card {
+      width: 140px;
+      height: 80px;
+    }
+  }
+}

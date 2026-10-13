@@ -1,0 +1,16 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "prcw/event-year-gallery",
+  "title": "PRCW Event Year Gallery",
+  "category": "prcw-blocks",
+  "icon": "format-gallery",
+  "description": "Galería completa de un año específico, con lightbox. Se usa dentro de la plantilla del CPT Event Year.",
+  "acf": { "mode": "preview", "renderTemplate": "render.php" },
+  "supports": { "align": ["full"] },
+  "textdomain": "prcw-theme",
+  "editorScript": "file:./index.js",
+  "viewScript": "file:./view.js",
+  "style": "file:./style-index.css",
+  "editorStyle": "file:./index.css"
+}

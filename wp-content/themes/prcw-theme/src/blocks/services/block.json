@@ -1,0 +1,15 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "prcw/services",
+  "title": "PRCW Services",
+  "category": "prcw-blocks",
+  "icon": "list-view",
+  "description": "Columnas de servicios con ícono + label, agrupadas bajo tarjetas con encabezado.",
+  "acf": { "mode": "preview", "renderTemplate": "render.php" },
+  "supports": { "align": ["wide"] },
+  "textdomain": "prcw-theme",
+  "editorScript": "file:./index.js",
+  "style": "file:./style-index.css",
+  "editorStyle": "file:./index.css"
+}

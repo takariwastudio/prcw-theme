@@ -1,0 +1,17 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "prcw/bars-directory",
+  "title": "PRCW Bars Directory",
+  "category": "prcw-blocks",
+  "icon": "location-alt",
+  "description": "Directorio de bares con mapa interactivo (Leaflet) y filtro por ciudad.",
+  "acf": { "mode": "preview", "renderTemplate": "render.php" },
+  "supports": { "align": ["full"] },
+  "textdomain": "prcw-theme",
+  "editorScript": "file:./index.js",
+  "viewScript": "file:./view.js",
+  "viewStyle": "file:./view.css",
+  "style": "file:./style-index.css",
+  "editorStyle": "file:./index.css"
+}

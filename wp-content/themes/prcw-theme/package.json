@@ -1,0 +1,21 @@
+{
+  "name": "prcw-theme",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "wp-scripts build",
+    "start": "wp-scripts start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@wordpress/scripts": "^32.6.0",
+    "sass": "^1.101.0"
+  },
+  "dependencies": {
+    "leaflet": "^1.9.4",
+    "swiper": "^14.0.1"
+  }
+}

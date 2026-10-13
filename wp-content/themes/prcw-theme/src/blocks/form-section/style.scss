@@ -1,0 +1,200 @@
+.prcw-form-section {
+  padding: 40px 20px;
+  background: #ffffff;
+
+  &__inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  &__heading {
+    font-family: "League Spartan", sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--wp--preset--color--teal, #43c3d2);
+    font-size: var(--wp--preset--font-size--lg);
+    text-align: center;
+    margin: 0 0 8px;
+  }
+
+  &__subheading {
+    font-family: "League Spartan", sans-serif;
+    font-weight: 700;
+    color: var(--wp--preset--color--accent, #f04d4f);
+    font-size: var(--wp--preset--font-size--lg);
+    text-align: center;
+    margin: 0 0 32px;
+  }
+
+  &__card {
+    background: #f8f8f8;
+    padding: 32px 24px;
+  }
+
+  // ===== Formulario de Contact Form 7 =====
+  .form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 4px;
+
+    @media (min-width: 700px) {
+      flex-direction: row;
+      gap: 20px;
+    }
+  }
+
+  .form-field,
+  .form-field-full {
+    flex: 1;
+    padding: 0 10px;
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: block;
+    font-family: "League Spartan", sans-serif;
+    font-weight: 500;
+    color: #7a7a7a;
+    font-size: var(--wp--preset--font-size--base);
+    margin-bottom: 8px;
+  }
+
+  .required-mark {
+    color: red;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+input[type="url"],
+  select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px 16px;
+    background: #f4f4f4;
+    border: 1px solid #e4e4e4;
+    font-family: "League Spartan", sans-serif;
+    font-size: var(--wp--preset--font-size--base);
+    color: #7a7a7a;
+    appearance: none;
+  }
+
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath fill='%237a7a7a' d='M0 0l5 6 5-6z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 12px 8px;
+    padding-right: 40px;
+  }
+
+  // Radio buttons (Yes/No)
+  .wpcf7-list-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-right: 24px;
+    margin-left: 0;
+  }
+
+  .wpcf7-list-item label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 0;
+    font-weight: 500;
+  }
+
+  input[type="radio"] {
+    width: 16px;
+    height: 16px;
+    accent-color: #f04d4f;
+  }
+
+  .form-submit {
+    display: flex;
+    justify-content: center;
+    padding: 0 10px;
+
+    @media (min-width: 700px) {
+      justify-content: flex-end;
+    }
+  }
+
+  input[type="submit"] {
+    display: inline-block;
+    background: #f04d4f;
+    color: #ffffff;
+    border: none;
+    font-family: "Jost", sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: var(--wp--preset--font-size--sm);
+    padding: 20px 50px;
+    cursor: pointer;
+    width: 100%;
+
+    @media (min-width: 700px) {
+      width: auto;
+    }
+  }
+
+  .wpcf7-response-output {
+    margin-top: 16px;
+    padding: 12px;
+    border-radius: 4px;
+    font-family: "League Spartan", sans-serif;
+    font-size: var(--wp--preset--font-size--xs);
+  }
+
+  // ===== Desktop (1024px+) =====
+  @media (min-width: 1024px) {
+    padding: 80px 20px;
+
+    &__card {
+      padding: 64px 96px 44px;
+    }
+  }
+}
+
+.prcw-address-autocomplete {
+  position: relative;
+}
+
+.prcw-address-suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background: #ffffff;
+  border: 1px solid #e4e4e4;
+  border-top: none;
+  max-height: 220px;
+  overflow-y: auto;
+
+  li {
+    padding: 10px 16px;
+    font-family: 'Jost', sans-serif;
+    font-size: var(--wp--preset--font-size--xs);
+    color: #444444;
+    cursor: pointer;
+
+    &:hover {
+      background: #f4f4f4;
+    }
+  }
+
+.prcw-address-loading {
+  color: #9c9c9c;
+  font-style: italic;
+  cursor: default;
+
+  &:hover {
+    background: transparent !important;
+  }
+}
+}

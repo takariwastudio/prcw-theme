@@ -1,0 +1,97 @@
+.prcw-sticky-sections {
+  display: flex;
+  flex-direction: column;
+  padding: 40px 20px;
+
+  &__media {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  &__image {
+    width: var(--image-width, 450px);
+    max-width: 100%;
+    height: auto;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  &__section {
+    text-align: center;
+  }
+
+  &__title {
+    font-family: 'League Spartan', sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    color: var(--wp--preset--color--teal, #43c2d2);
+    font-size: var(--wp--preset--font-size--xl);
+    margin: 0 0 20px;
+  }
+
+  &__paragraph {
+    font-family: 'League Spartan', sans-serif;
+    font-weight: 500;
+    color: #7a7a7a;
+    font-size: var(--wp--preset--font-size--md);
+    line-height: 1.3;
+
+    p {
+      margin-bottom: 20px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__banner {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+
+    img {
+      width: 100%;
+      max-width: 240px;
+      height: auto;
+    }
+  }
+
+  // ===== Desktop (1024px+): imagen sticky a la izquierda =====
+  @media (min-width: 1024px) {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 40px;
+    padding: 64px 40px;
+
+    &__media {
+      flex: 0 0 50%;
+display: flex;
+justify-content: center;
+      position: sticky;
+      top: 40px;
+      margin-bottom: 0;
+    }
+
+    &__content {
+      flex: 1;
+      gap: 60px;
+    }
+
+    &__section,
+    &__banner {
+      text-align: left;
+      justify-content: flex-start;
+    }
+
+    &__banner img {
+      max-width: 300px;
+    }
+  }
+}

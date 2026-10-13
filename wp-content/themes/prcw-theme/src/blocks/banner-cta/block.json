@@ -1,0 +1,15 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "prcw/banner-cta",
+  "title": "PRCW Banner CTA",
+  "category": "prcw-blocks",
+  "icon": "megaphone",
+  "description": "Banner con imagen de fondo, logo/imagen centrada, texto y botón (ej. Tip Jar).",
+  "acf": { "mode": "preview", "renderTemplate": "render.php" },
+  "supports": { "align": ["full"] },
+  "textdomain": "prcw-theme",
+  "editorScript": "file:./index.js",
+  "style": "file:./style-index.css",
+  "editorStyle": "file:./index.css"
+}

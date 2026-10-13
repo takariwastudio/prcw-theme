@@ -1,0 +1,15 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "prcw/crew",
+  "title": "PRCW Crew",
+  "category": "prcw-blocks",
+  "icon": "groups",
+  "description": "Sección 'The Crew': título, foto de grupo, y grid de nombres + Instagram del equipo.",
+  "acf": { "mode": "preview", "renderTemplate": "render.php" },
+  "supports": { "align": ["full"] },
+  "textdomain": "prcw-theme",
+  "editorScript": "file:./index.js",
+  "style": "file:./style-index.css",
+  "editorStyle": "file:./index.css"
+}

@@ -1,0 +1,65 @@
+.prcw-crew {
+  background: linear-gradient(180deg, #f2f4f4 0%, #ffffff 100%);
+  padding: 60px 20px;
+
+  &__inner {
+    max-width: 1366px;
+    margin: 0 auto;
+  }
+
+  &__title {
+    font-family: 'League Spartan', sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--wp--preset--color--teal, #43c2d2);
+    font-size: var(--wp--preset--font-size--xl);
+    text-align: center;
+    margin: 0 0 30px;
+  }
+
+  &__photo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+
+    img {
+      width: 100%;
+      max-width: 915px;
+      height: auto;
+    }
+  }
+
+  &__grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px 60px;
+  }
+
+  &__member {
+    text-align: center;
+  }
+
+  &__name {
+    font-family: 'League Spartan', sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #f04d4f;
+    font-size: var(--wp--preset--font-size--base);
+    margin: 0 0 4px;
+  }
+
+  &__handle {
+    display: block;
+    font-family: 'League Spartan', sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #7a7a7a;
+    font-size: var(--wp--preset--font-size--sm);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

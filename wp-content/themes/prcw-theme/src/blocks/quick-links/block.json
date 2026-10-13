@@ -1,0 +1,15 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "prcw/quick-links",
+  "title": "PRCW Quick Links",
+  "category": "prcw-blocks",
+  "icon": "list-view",
+  "description": "Fila de accesos rápidos (Official Bars, Tip Jar, Volunteer, etc.), cantidad de columnas flexible.",
+  "acf": { "mode": "preview", "renderTemplate": "render.php" },
+  "supports": { "align": ["wide", "full"] },
+  "textdomain": "prcw-theme",
+  "editorScript": "file:./index.js",
+  "style": "file:./style-index.css",
+  "editorStyle": "file:./index.css"
+}

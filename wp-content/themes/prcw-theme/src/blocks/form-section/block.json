@@ -1,0 +1,15 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "prcw/form-section",
+  "title": "PRCW Form Section",
+  "category": "prcw-blocks",
+  "icon": "feedback",
+  "description": "Sección con título + subtítulo + un formulario de Contact Form 7, en tarjeta con estilos de marca.",
+  "acf": { "mode": "preview", "renderTemplate": "render.php" },
+  "supports": { "align": ["wide"] },
+  "textdomain": "prcw-theme",
+  "editorScript": "file:./index.js",
+  "style": "file:./style-index.css",
+  "editorStyle": "file:./index.css"
+}

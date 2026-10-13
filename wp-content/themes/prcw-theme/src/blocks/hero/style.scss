@@ -1,0 +1,42 @@
+.prcw-hero {
+  position: relative;
+  min-height: 480px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+
+  &__content {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    color: #ffffff;
+  }
+
+  &__title {
+    font-size: var(--wp--preset--font-size--2xl);
+    margin-bottom: 1rem;
+  }
+
+  &__text {
+    font-size: var(--wp--preset--font-size--sm);
+    margin-bottom: 1.5rem;
+  }
+
+  &__button {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    background: var(--wp--preset--color--accent, #e63946);
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 0.85;
+      color: #ffffff;
+    }
+  }
+}

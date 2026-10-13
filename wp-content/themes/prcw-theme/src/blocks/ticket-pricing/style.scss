@@ -1,0 +1,191 @@
+.prcw-ticket-pricing {
+  padding: 40px 20px;
+  background: #ffffff;
+
+  &__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+  }
+
+  &__title {
+    font-family: "League Spartan", sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    color: #7a7a7a;
+    font-size: var(--wp--preset--font-size--2xl);
+    text-align: center;
+    margin: 0;
+  }
+
+  &__bg {
+    background: #f3f3f3;
+    padding: 24px;
+    width: 100%;
+    border-radius: 8px;
+  }
+
+  &__grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  &__card {
+    background: #ffffff;
+    border-radius: 5px;
+    padding: 24px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    text-align: center;
+  }
+
+  &__name {
+    font-family: "League Spartan", sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #ef4e4f;
+    font-size: var(--wp--preset--font-size--md);
+    margin: 0;
+  }
+
+  &__price-box {
+    background: #f3f3f3;
+    border-radius: 8px;
+    padding: 10px 20px;
+    width: 100%;
+  }
+
+  &__price-old {
+    font-family: "League Spartan", sans-serif;
+    font-weight: 800;
+    color: #606060;
+    font-size: var(--wp--preset--font-size--xs);
+    margin: 0;
+
+    del {
+      opacity: 0.7;
+    }
+  }
+
+  &__price-current {
+    font-family: "League Spartan", sans-serif;
+    font-weight: 800;
+    color: #606060;
+    font-size: var(--wp--preset--font-size--sm);
+    margin: 0;
+  }
+
+  &__description {
+    font-family: "League Spartan", sans-serif;
+    font-weight: 500;
+    color: #7a7a7a;
+    font-size: var(--wp--preset--font-size--base);
+    line-height: 1.3;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  &__button {
+    display: inline-block;
+    background: #f04d4f;
+    color: #ffffff;
+    border: none;
+    font-family: "Jost", sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: var(--wp--preset--font-size--sm);
+    padding: 12px 50px;
+    border-radius: 7px;
+    cursor: pointer;
+  }
+
+  // ===== Desktop (1024px+) =====
+  @media (min-width: 1024px) {
+    padding: 80px 20px;
+
+    &__bg {
+      padding: 48px 144px;
+    }
+
+    &__grid {
+      flex-direction: row;
+      align-items: stretch;
+    }
+  }
+
+  // Modal (mismo patrón que Donation)
+  &__modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+
+    &.is-active {
+      display: flex;
+    }
+
+    &-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    &-box {
+      position: relative;
+      z-index: 1;
+      background: #ffffff;
+      padding: 40px;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    &-text {
+      font-family: "League Spartan", sans-serif;
+      font-weight: 700;
+      color: #494848;
+      font-size: var(--wp--preset--font-size--base);
+      margin-bottom: 20px;
+    }
+
+    &-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    &-btn {
+      padding: 14px 20px;
+      font-family: "Jost", sans-serif;
+      font-weight: 600;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      font-size: var(--wp--preset--font-size--sm);
+
+      &--primary {
+        background: #f04d4f;
+        color: #ffffff;
+      }
+
+      &--secondary {
+        background: #e4e4e4;
+        color: #494848;
+      }
+    }
+  }
+}

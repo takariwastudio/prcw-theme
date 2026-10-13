@@ -1,0 +1,15 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "prcw/poster-cta",
+  "title": "PRCW Poster CTA",
+  "category": "prcw-blocks",
+  "icon": "format-image",
+  "description": "Título + imagen/póster destacado + botón, sin fondo. Ideal para anuncios de eventos.",
+  "acf": { "mode": "preview", "renderTemplate": "render.php" },
+  "supports": { "align": ["full"] },
+  "textdomain": "prcw-theme",
+  "editorScript": "file:./index.js",
+  "style": "file:./style-index.css",
+  "editorStyle": "file:./index.css"
+}

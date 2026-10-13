@@ -1,0 +1,16 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "prcw/ticket-pricing",
+  "title": "PRCW Ticket Pricing",
+  "category": "prcw-blocks",
+  "icon": "tickets-alt",
+  "description": "Tarjetas de tickets conectadas a productos reales de WooCommerce, con precio/oferta automáticos.",
+  "acf": { "mode": "preview", "renderTemplate": "render.php" },
+  "supports": { "align": ["wide"] },
+  "textdomain": "prcw-theme",
+  "editorScript": "file:./index.js",
+  "viewScript": "file:./view.js",
+  "style": "file:./style-index.css",
+  "editorStyle": "file:./index.css"
+}

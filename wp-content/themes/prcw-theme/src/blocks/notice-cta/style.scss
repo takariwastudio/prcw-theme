@@ -1,0 +1,67 @@
+.prcw-notice-cta {
+  padding: 30px 16px;
+
+  &__inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+  }
+
+  &__button {
+    display: inline-block;
+    background: #444444;
+    color: #ffffff;
+    font-family: "League Spartan", sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: var(--wp--preset--font-size--sm);
+    padding: 16px 24px;
+    text-decoration: none;
+  }
+
+  &__icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--wp--preset--color--accent, #f04d4f);
+    color: #ffffff;
+    padding: 8px;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__text {
+    font-family: "League Spartan", sans-serif;
+    color: #444444;
+    font-size: var(--wp--preset--font-size--md);
+    line-height: 1.4;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  &__link {
+    font-family: "League Spartan", sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--wp--preset--color--accent, #f04d4f);
+    font-size: var(--wp--preset--font-size--base);
+    text-decoration: underline;
+  }
+
+  // ===== Desktop (1024px+) =====
+  @media (min-width: 1024px) {
+    padding: 60px 16px;
+  }
+}

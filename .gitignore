@@ -1,0 +1,8 @@
+node_modules/
+wp-content/themes/prcw-theme/build/
+*.log
+*.zip
+*.deb
+.env
+.DS_Store
+Thumbs.db

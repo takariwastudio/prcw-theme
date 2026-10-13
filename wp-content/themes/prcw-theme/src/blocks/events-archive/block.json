@@ -1,0 +1,16 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "prcw/events-archive",
+  "title": "PRCW Events Archive",
+  "category": "prcw-blocks",
+  "icon": "images-alt2",
+  "description": "Tabs de los 3 años más recientes con galería + sección de archivo automática para años anteriores.",
+  "acf": { "mode": "preview", "renderTemplate": "render.php" },
+  "supports": { "align": ["full"] },
+  "textdomain": "prcw-theme",
+  "editorScript": "file:./index.js",
+  "viewScript": "file:./view.js",
+  "style": "file:./style-index.css",
+  "editorStyle": "file:./index.css"
+}

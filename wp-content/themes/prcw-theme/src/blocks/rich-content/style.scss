@@ -1,0 +1,106 @@
+.prcw-rich-content {
+  padding: 32px 16px;
+
+  &__inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  // ===== Headings =====
+  &__heading {
+    font-family: "League Spartan", sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin: 0;
+    line-height: 1.15;
+  }
+
+  &__heading--sm {
+    font-size: var(--wp--preset--font-size--base);
+  }
+  &__heading--md {
+    font-size: var(--wp--preset--font-size--md);
+  }
+  &__heading--lg {
+    font-size: var(--wp--preset--font-size--lg);
+  }
+  &__heading--xl {
+    font-size: var(--wp--preset--font-size--xl);
+  }
+  &__heading--2xl {
+    font-size: var(--wp--preset--font-size--2xl);
+  }
+
+  &__heading--gray {
+    color: #7a7a7a;
+  }
+  &__heading--teal {
+    color: var(--wp--preset--color--teal, #43c2d2);
+  }
+  &__heading--accent {
+    color: var(--wp--preset--color--accent, #f04d4f);
+  }
+
+  // ===== Lists =====
+  &__list {
+    font-family: "Jost", sans-serif;
+    color: #444444;
+    font-size: var(--wp--preset--font-size--base);
+    line-height: 1.6;
+    margin: 0;
+    padding-left: 24px;
+
+    li {
+      margin-bottom: 8px;
+    }
+  }
+
+  &__list--bullet {
+    list-style-type: disc;
+
+    li::marker {
+      color: var(--wp--preset--color--accent, #f04d4f);
+    }
+  }
+
+  &__list--numbered {
+    list-style-type: decimal;
+
+    li::marker {
+      color: var(--wp--preset--color--accent, #f04d4f);
+      font-weight: 700;
+    }
+  }
+
+  // ===== Paragraphs =====
+  &__paragraph {
+    font-family: "Jost", sans-serif;
+    color: #444444;
+    font-size: var(--wp--preset--font-size--base);
+    line-height: 1.6;
+
+    p {
+      margin: 0 0 16px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    a {
+      color: var(--wp--preset--color--teal, #43c2d2);
+    }
+
+    strong {
+      font-weight: 700;
+    }
+  }
+
+  // ===== Desktop (1024px+) =====
+  @media (min-width: 1024px) {
+    padding: 48px 16px;
+  }
+}

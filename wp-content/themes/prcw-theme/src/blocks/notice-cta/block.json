@@ -1,0 +1,15 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "prcw/notice-cta",
+  "title": "PRCW Notice CTA",
+  "category": "prcw-blocks",
+  "icon": "megaphone",
+  "description": "Botón + ícono + texto + link, centrado. Ideal para avisos/instrucciones con CTA.",
+  "acf": { "mode": "preview", "renderTemplate": "render.php" },
+  "supports": { "align": ["wide"] },
+  "textdomain": "prcw-theme",
+  "editorScript": "file:./index.js",
+  "style": "file:./style-index.css",
+  "editorStyle": "file:./index.css"
+}

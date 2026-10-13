@@ -1,0 +1,15 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "prcw/page-header",
+  "title": "PRCW Page Header",
+  "category": "prcw-blocks",
+  "icon": "cover-image",
+  "description": "Header reusable para páginas internas: imagen de fondo + título, con fallback a la textura default.",
+  "acf": { "mode": "preview", "renderTemplate": "render.php" },
+  "supports": { "align": ["full"] },
+  "textdomain": "prcw-theme",
+  "editorScript": "file:./index.js",
+  "style": "file:./style-index.css",
+  "editorStyle": "file:./index.css"
+}

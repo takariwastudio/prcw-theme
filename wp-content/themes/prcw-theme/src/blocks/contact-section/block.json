@@ -1,0 +1,15 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "prcw/contact-section",
+  "title": "PRCW Contact Section",
+  "category": "prcw-blocks",
+  "icon": "email",
+  "description": "Sección completa de contacto: fondo con overlay, foto flotante, formulario CF7 y columnas de contactos con íconos sociales.",
+  "acf": { "mode": "preview", "renderTemplate": "render.php" },
+  "supports": { "align": ["full"] },
+  "textdomain": "prcw-theme",
+  "editorScript": "file:./index.js",
+  "style": "file:./style-index.css",
+  "editorStyle": "file:./index.css"
+}

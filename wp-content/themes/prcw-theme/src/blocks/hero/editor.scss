@@ -1,0 +1,6 @@
+// Estilos SOLO para dentro del editor de Gutenberg (ej. ajustar el padding del wrapper del bloque)
+.wp-block-prcw-hero {
+  .prcw-hero {
+    min-height: 320px; // más compacto en el editor para no ocupar tanto scroll
+  }
+}

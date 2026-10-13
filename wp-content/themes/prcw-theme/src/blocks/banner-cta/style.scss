@@ -1,0 +1,95 @@
+.prcw-banner-cta {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  // ===== Mobile (base) =====
+  padding: 20px 27.5px;
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 253, 253, 0.5);
+  }
+
+  &__content {
+    position: relative;
+    z-index: 1;
+    max-width: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+  }
+
+  &__logo {
+    width: var(--logo-width, 335px);
+    max-width: 100%;
+    height: auto;
+
+    @media (max-width: 767px) {
+      width: calc(var(--logo-width, 335px) * 0.693);
+    }
+  }
+
+  &__text {
+    font-family: "League Spartan", sans-serif;
+    font-weight: 500;
+    color: #7a7a7a;
+    font-size: var(--wp--preset--font-size--md);
+    line-height: 1.4;
+
+    p {
+      margin-bottom: 0;
+    }
+  }
+
+  &__button {
+    display: inline-block;
+    background: #f04d4f;
+    color: #ffffff;
+    font-family: "League Spartan", sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: var(--wp--preset--font-size--sm);
+    padding: 20px;
+    text-decoration: none;
+  }
+
+  // ===== Tablet (768px+) =====
+  @media (min-width: 768px) {
+    padding: 50px;
+
+    &__content {
+      max-width: 668px;
+    }
+
+    &__logo {
+      width: calc(var(--logo-width, 335px) * 0.77);
+    }
+  }
+
+  // ===== Desktop (1024px+) =====
+  @media (min-width: 1024px) {
+    min-height: 857px;
+    padding: 0 60px;
+
+    &__content {
+      max-width: 1366px;
+      gap: 30px;
+    }
+
+    &__logo {
+      width: var(--logo-width, 335px);
+    }
+
+    &__text {
+      max-width: 1000px;
+    }
+  }
+}

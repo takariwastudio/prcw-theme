@@ -1,0 +1,15 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "prcw/media-text",
+  "title": "PRCW Media + Texto",
+  "category": "prcw-blocks",
+  "icon": "align-pull-left",
+  "description": "Sección de imagen o video + texto, posición intercambiable (izquierda/derecha).",
+  "acf": { "mode": "preview", "renderTemplate": "render.php" },
+  "supports": { "align": ["full"] },
+  "textdomain": "prcw-theme",
+  "editorScript": "file:./index.js",
+  "style": "file:./style-index.css",
+  "editorStyle": "file:./index.css"
+}

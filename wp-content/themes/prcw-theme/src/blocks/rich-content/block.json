@@ -1,0 +1,15 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "prcw/rich-content",
+  "title": "PRCW Rich Content",
+  "category": "prcw-blocks",
+  "icon": "editor-kitchensink",
+  "description": "Bloque flexible: combina títulos, listas y párrafos con nuestros estilos de marca.",
+  "acf": { "mode": "preview", "renderTemplate": "render.php" },
+  "supports": { "align": ["wide"] },
+  "textdomain": "prcw-theme",
+  "editorScript": "file:./index.js",
+  "style": "file:./style-index.css",
+  "editorStyle": "file:./index.css"
+}

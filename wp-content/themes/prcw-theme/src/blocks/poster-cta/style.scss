@@ -1,0 +1,47 @@
+.prcw-poster-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 40px 16px;
+  gap: 24px;
+
+  &__title {
+    font-family: 'League Spartan', sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #7a7a7a;
+    font-size: var(--wp--preset--font-size--xl);
+    margin: 0;
+  }
+
+  &__image {
+    width: 100%;
+    max-width: 908px;
+
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+  }
+
+  &__button {
+    display: inline-block;
+    background: #f04d4f;
+    color: #ffffff;
+    font-family: 'Jost', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: var(--wp--preset--font-size--sm);
+    padding: 15px 50px;
+    border-radius: 7px;
+    text-decoration: none;
+  }
+
+  // ===== Desktop (1024px+) =====
+  @media (min-width: 1024px) {
+    padding: 80px 16px;
+    gap: 40px;
+  }
+}

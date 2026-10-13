@@ -1,0 +1,298 @@
+.prcw-donation {
+  padding: 60px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__card {
+    background: #f8f8f8;
+    box-shadow: 0px 0px 13px 1px rgba(0, 0, 0, 0.15);
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    max-width: 1000px;
+    width: 100%;
+  }
+
+  &__logo img {
+    max-width: 200px;
+    height: auto;
+  }
+
+  &__form-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+  }
+
+  &__form {
+    background: #ebebeb;
+    padding: 20px;
+    width: 100%;
+    max-width: 345px;
+  }
+
+  &__label {
+    font-family: "League Spartan", sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #3e4349;
+    font-size: var(--wp--preset--font-size--sm);
+    margin: 0 0 15px;
+  }
+
+  &__payment-text {
+    font-family: "League Spartan", sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--wp--preset--color--teal, #43c2d2);
+    font-size: var(--wp--preset--font-size--base);
+    text-align: center;
+    max-width: 480px;
+    margin: 0;
+  }
+
+  // Estilos del formulario nativo de WooCommerce (input NYP + botón)
+  form.cart {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  // Oculta el label "Name Your Price ($)" del plugin
+  .woonp label {
+    display: none;
+  }
+
+  // Oculta el selector de cantidad (no aplica a donaciones)
+  .quantity {
+    display: none !important;
+  }
+
+  .woonp {
+    display: flex;
+    align-items: stretch;
+    border: 1px solid #e4e4e4;
+    background: #f4f4f4;
+
+    // Símbolo $ como prefijo visual, imitando el diseño
+    &::before {
+      content: "$";
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      align-self: stretch;
+      background: #d7d7d7;
+      padding: 0 18px;
+      font-family: "Jost", sans-serif;
+      font-weight: 300;
+      font-size: var(--wp--preset--font-size--sm);
+      color: #000000;
+    }
+  }
+
+  .woonp-input {
+    background: transparent;
+    border: none;
+    padding: 14px 21px;
+    text-align: center;
+    font-family: "Jost", sans-serif;
+    font-size: var(--wp--preset--font-size--sm);
+    color: #444;
+    width: 100%;
+    flex: 1;
+
+    // Oculta las flechas de incremento/decremento (spinner nativo)
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    &[type="number"] {
+      appearance: textfield; // Firefox
+    }
+  }
+
+  button[type="submit"].single_add_to_cart_button {
+    background: #f04d4f !important;
+    color: #ffffff !important;
+    border: none;
+    padding: 20px 25px;
+    font-family: "Jost", sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: var(--wp--preset--font-size--md);
+    text-align: center;
+    width: 100%;
+    cursor: pointer;
+  }
+
+  &__intro {
+    font-family: "League Spartan", sans-serif;
+    color: #7a7a7a;
+    font-size: var(--wp--preset--font-size--md);
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto 40px;
+    padding: 0 20px;
+  }
+
+  &__stat {
+    position: relative;
+    overflow: hidden;
+    min-height: 200px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 28px 20px;
+
+    img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__stat-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(110, 193, 228, 0.55);
+  }
+
+  &__stat-text {
+    position: relative;
+    z-index: 1;
+    color: #ffffff;
+    font-family: "League Spartan", sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: var(--wp--preset--font-size--base);
+    text-align: center;
+    margin: 0;
+  }
+
+  &__card--with-stat {
+    padding: 0;
+    gap: 20px;
+    overflow: hidden;
+    border-radius: 8px;
+  }
+
+  &__card--with-stat &__stat {
+    border-radius: 8px 8px 0 0;
+  }
+
+  &__card--with-stat &__form-wrap {
+    padding: 0 20px 20px;
+  }
+
+  // ===== Desktop (1024px+) =====
+  @media (min-width: 1024px) {
+    &__card {
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      padding: 40px;
+    }
+
+    &__card--with-stat {
+      align-items: stretch;
+      gap: 0;
+      padding: 0;
+      background: linear-gradient(90deg, #ffffff 8%, #e6e6e6 100%);
+    }
+
+    &__card--with-stat &__stat {
+      flex: 1;
+      min-height: auto;
+    }
+
+    &__card--with-stat &__logo,
+    &__card--with-stat &__form-wrap {
+      flex: 1;
+      min-width: 0;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &__logo img {
+      max-width: 280px;
+    }
+  }
+
+  .prcw-donation__modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+
+    &.is-active {
+      display: flex;
+    }
+
+    &-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    &-box {
+      position: relative;
+      z-index: 1;
+      background: #ffffff;
+      padding: 40px;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    &-text {
+      font-family: "League Spartan", sans-serif;
+      font-weight: 700;
+      color: #494848;
+      font-size: var(--wp--preset--font-size--base);
+      margin-bottom: 20px;
+    }
+
+    &-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    &-btn {
+      padding: 14px 20px;
+      font-family: "Jost", sans-serif;
+      font-weight: 600;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      font-size: var(--wp--preset--font-size--sm);
+
+      &--primary {
+        background: #f04d4f;
+        color: #ffffff;
+      }
+
+      &--secondary {
+        background: #e4e4e4;
+        color: #494848;
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "prcw/hero",
+  "title": "PRCW Hero",
+  "category": "prcw-blocks",
+  "icon": "cover-image",
+  "description": "Bloque de héroe con título, texto, imagen de fondo y botón. Totalmente editable desde el editor.",
+  "keywords": ["hero", "banner", "portada"],
+  "acf": {
+    "mode": "preview",
+    "renderTemplate": "render.php"
+  },
+  "supports": {
+    "align": ["wide", "full"],
+    "anchor": true
+  },
+  "textdomain": "prcw-theme",
+  "editorScript": "file:./index.js",
+  "style": "file:./style-index.css",
+  "editorStyle": "file:./index.css"
+}

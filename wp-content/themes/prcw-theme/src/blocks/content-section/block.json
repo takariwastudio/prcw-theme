@@ -1,0 +1,15 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "prcw/content-section",
+  "title": "PRCW Content Section",
+  "category": "prcw-blocks",
+  "icon": "text-page",
+  "description": "Sección de texto narrativo: eyebrow, párrafo destacado, cuerpo libre (WYSIWYG) y cierre.",
+  "acf": { "mode": "preview", "renderTemplate": "render.php" },
+  "supports": { "align": ["wide"] },
+  "textdomain": "prcw-theme",
+  "editorScript": "file:./index.js",
+  "style": "file:./style-index.css",
+  "editorStyle": "file:./index.css"
+}

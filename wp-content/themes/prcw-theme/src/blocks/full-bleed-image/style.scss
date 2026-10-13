@@ -1,0 +1,36 @@
+.prcw-full-bleed-image {
+  width: 100%;
+  overflow: hidden;
+
+  &__img {
+    display: block;
+    width: 100%;
+    height: auto;
+
+    // Estado inicial: invisible y ligeramente agrandada
+    opacity: 0;
+    transform: scale(1.08);
+    transition:
+      opacity 0.9s ease,
+      transform 0.9s ease;
+
+    &.is-visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  // Hover sutil, solo en dispositivos con mouse real (evita "hover pegajoso" en mobile/touch)
+  @media (hover: hover) and (pointer: fine) {
+    &__img {
+      transition:
+        opacity 0.9s ease,
+        transform 0.9s ease,
+        transform 0.4s ease;
+
+      &:hover {
+        transform: scale(1.03);
+      }
+    }
+  }
+}

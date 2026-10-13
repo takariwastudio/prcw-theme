@@ -1,0 +1,150 @@
+.prcw-hero-slider {
+  position: relative;
+  width: 100%;
+
+  // ===== Mobile (base) =====
+  .swiper,
+  .swiper-slide {
+    height: 466px;
+  }
+
+  &__slide {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.46);
+  }
+
+  &__content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    padding: 1.5rem;
+  }
+
+  &__content--centered {
+    display: flex;
+    justify-content: center;
+  }
+
+  // Mobile: split se apila (imagen arriba, texto abajo)
+  &__content--split {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  &__side-image img {
+    max-width: 120px;
+    height: auto;
+  }
+
+  &__text {
+    max-width: 700px;
+  }
+
+  &__text--center {
+    text-align: center;
+  }
+
+  &__text--left {
+    text-align: center; // en mobile, ambos layouts centran texto
+  }
+
+  &__title {
+    font-family: 'League Spartan', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 1.1;
+    margin-bottom: 0.75rem;
+    font-size: var(--wp--preset--font-size--xl);
+  }
+
+  &__subtitle {
+    font-family: 'Jost', sans-serif;
+    font-weight: 800;
+    color: #494848;
+    margin-bottom: 1rem;
+    font-size: var(--wp--preset--font-size--base);
+  }
+
+  &__button {
+    display: inline-block;
+    background: #ee4e4f;
+    color: #ffffff;
+    font-family: 'League Spartan', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 0.65rem 1.5rem;
+    text-decoration: none;
+    font-size: var(--wp--preset--font-size--sm);
+  }
+
+  &__prev,
+  &__next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 2;
+    padding: 8px;
+
+    img {
+      width: 24px;
+      height: 24px;
+      display: block;
+    }
+  }
+
+  &__prev { left: 8px; }
+  &__next { right: 8px; }
+
+  // ===== Tablet (768px+) =====
+  @media (min-width: 768px) {
+    .swiper,
+    .swiper-slide {
+      height: 334.5px;
+    }
+
+    // A partir de tablet, split pasa a ser lado a lado
+    &__content--split {
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    &__text--left {
+      text-align: left;
+    }
+
+    &__prev,
+    &__next {
+      padding: 15px;
+
+      img {
+        width: 32px;
+        height: 32px;
+      }
+    }
+  }
+
+  // ===== Desktop (1024px+) =====
+  @media (min-width: 1024px) {
+    .swiper,
+    .swiper-slide {
+      height: 578px;
+    }
+  }
+}

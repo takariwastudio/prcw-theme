@@ -1,6 +1,24 @@
 .prcw-hero-slider {
   position: relative;
   width: 100%;
+  overflow: hidden;
+
+  .swiper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .swiper-wrapper {
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+
+  .swiper-slide {
+    flex-shrink: 0;
+    width: 100%;
+  }
 
   // ===== Mobile (base) =====
   .swiper,
@@ -10,6 +28,7 @@
 
   &__slide {
     position: relative;
+    background-color: #f4f4f4;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

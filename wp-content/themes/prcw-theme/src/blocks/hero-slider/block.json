@@ -9,7 +9,9 @@
   "acf": { "mode": "preview", "renderTemplate": "render.php" },
   "supports": { "align": ["full"] },
   "textdomain": "prcw-theme",
-  "viewScript": "file:./index.js",
+  "editorScript": "file:./index.js",
+  "viewScript": "file:./view.js",
+  "viewStyle": "file:./view.css",
   "style": "file:./style-index.css",
   "editorStyle": "file:./index.css"
 }

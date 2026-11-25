@@ -26,7 +26,7 @@
     height: 466px;
   }
 
-  &__slide {
+  .swiper-slide.prcw-hero-slider__slide {
     position: relative;
     background-color: #f4f4f4;
     background-size: cover;
@@ -34,6 +34,7 @@
     background-repeat: no-repeat;
     display: flex;
     align-items: center;
+    justify-content: center;
   }
 
   &__overlay {
@@ -46,11 +47,14 @@
     position: relative;
     z-index: 1;
     width: 100%;
-    padding: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem 3rem;
   }
 
   &__content--centered {
     display: flex;
+    align-items: center;
     justify-content: center;
   }
 
@@ -59,16 +63,23 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.25rem;
+    justify-content: center;
+    gap: 1.5rem;
   }
 
-  &__side-image img {
-    max-width: 120px;
-    height: auto;
+  &__side-image {
+    flex-shrink: 0;
+
+    img {
+      width: 165px;
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
   }
 
   &__text {
-    max-width: 700px;
+    max-width: 780px;
   }
 
   &__text--center {
@@ -84,7 +95,7 @@
     font-weight: 700;
     text-transform: uppercase;
     line-height: 1.1;
-    margin-bottom: 0.75rem;
+    margin: 0 0 0.75rem;
     font-size: var(--wp--preset--font-size--xl);
   }
 
@@ -92,8 +103,9 @@
     font-family: 'Jost', sans-serif;
     font-weight: 800;
     color: #494848;
-    margin-bottom: 1rem;
-    font-size: var(--wp--preset--font-size--base);
+    line-height: 1.25;
+    margin: 0 0 1.5rem;
+    font-size: var(--wp--preset--font-size--md);
   }
 
   &__button {
@@ -103,7 +115,7 @@
     font-family: 'League Spartan', sans-serif;
     font-weight: 700;
     text-transform: uppercase;
-    padding: 0.65rem 1.5rem;
+    padding: 0.75rem 1.75rem;
     text-decoration: none;
     font-size: var(--wp--preset--font-size--sm);
   }
@@ -119,6 +131,10 @@
     z-index: 2;
     padding: 8px;
 
+    &:focus:not(:focus-visible) {
+      outline: none;
+    }
+
     img {
       width: 24px;
       height: 24px;
@@ -133,7 +149,11 @@
   @media (min-width: 768px) {
     .swiper,
     .swiper-slide {
-      height: 334.5px;
+      height: 380px;
+    }
+
+    &__content {
+      padding: 2rem 4.5rem;
     }
 
     // A partir de tablet, split pasa a ser lado a lado
@@ -141,7 +161,11 @@
       flex-direction: row;
       justify-content: center;
       align-items: center;
-      gap: 2rem;
+      gap: 2.5rem;
+    }
+
+    &__side-image img {
+      width: 200px;
     }
 
     &__text--left {
@@ -164,6 +188,18 @@
     .swiper,
     .swiper-slide {
       height: 578px;
+    }
+
+    &__content--split {
+      gap: 3.5rem;
+    }
+
+    &__side-image img {
+      width: 260px;
+    }
+
+    &__subtitle {
+      font-size: clamp(28px, 2.4vw, 36px);
     }
   }
 }

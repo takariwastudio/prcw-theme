@@ -140,3 +140,18 @@ npm run build   # en CI o local Ubuntu
 rsync -avz --exclude node_modules --exclude .wp-env.override.json ./ user@prod:/var/www/html/wp-content/themes/prcw-theme/
 ```
 En prod, define `PRCW_LOCATIONIQ_API_KEY` en `wp-config.php` del servidor, no en repo.
+
+## Actualizaciones a 1 clic en WordPress (GitHub Releases)
+
+El theme incluye un actualizador nativo en `inc/github-updater.php` conectado a `takariwastudio/prcw-theme`:
+
+1. Sube la versión en `wp-content/themes/prcw-theme/style.css` (`Version:`) y `functions.php` (`PRCW_THEME_VERSION`), por ejemplo `1.0.2`.
+2. Haz commit y publica un tag `v*`:
+   ```bash
+   git commit -am "chore: release v1.0.2"
+   git tag v1.0.2
+   git push origin main --tags
+   ```
+3. El workflow `.github/workflows/release.yml` compila `npm run build`, genera `prcw-theme.zip` (con `build/` y sin `node_modules/` ni `src/`) y lo adjunta automáticamente al Release en GitHub (o puedes subir `prcw-theme.zip` manualmente al Release).
+4. En WordPress ve a **Escritorio → Actualizaciones** (pulsa **Comprobar de nuevo** para forzar revisión inmediata) o **Apariencia → Temas** y haz clic en **Actualizar ahora**.
+   - Si el repositorio cambia a privado, configura un Personal Access Token (`contents: read`) en **WP Admin → PRCW Settings → GitHub Token** o con `define('PRCW_GITHUB_TOKEN', 'github_pat_...');` en `wp-config.php`.

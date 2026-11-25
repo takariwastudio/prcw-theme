@@ -37,7 +37,16 @@ add_action( 'acf/init', function() {
                     'type'         => 'text',
                     'instructions' => 'Define aquí la key de LocationIQ o usa la constante PRCW_LOCATIONIQ_API_KEY en wp-config.php / .wp-env.json (config.PRCW_LOCATIONIQ_API_KEY). Rotar la key si fue expuesta en git.',
                     'required'     => 0,
-                    'wrapper'      => array( 'width' => '100' ),
+                    'wrapper'      => array( 'width' => '50' ),
+                ),
+                array(
+                    'key'          => 'field_prcw_github_token',
+                    'label'        => 'GitHub Token (Opcional — Auto-Updater)',
+                    'name'         => 'github_token',
+                    'type'         => 'password',
+                    'instructions' => 'Opcional mientras takariwastudio/prcw-theme sea público. Necesario solo si el repo pasa a privado o para subir el límite de peticiones de GitHub API (o usa PRCW_GITHUB_TOKEN en wp-config.php).',
+                    'required'     => 0,
+                    'wrapper'      => array( 'width' => '50' ),
                 ),
             ),
             'location' => array(

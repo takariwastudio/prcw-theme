@@ -1,0 +1,67 @@
+name: Release PRCW Theme
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag del release (ej. v1.0.1)'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tag || github.ref }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: wp-content/themes/prcw-theme/package-lock.json
+
+      - name: Install dependencies and build blocks
+        working-directory: wp-content/themes/prcw-theme
+        run: |
+          npm ci
+          npm run build
+
+      - name: Package prcw-theme.zip
+        run: |
+          mkdir -p /tmp/release/prcw-theme
+          rsync -a \
+            --exclude='node_modules/' \
+            --exclude='src/' \
+            --exclude='.git*' \
+            --exclude='package.json' \
+            --exclude='package-lock.json' \
+            --exclude='webpack.config.js' \
+            --exclude='.DS_Store' \
+            --exclude='Thumbs.db' \
+            --exclude='*.log' \
+            wp-content/themes/prcw-theme/ \
+            /tmp/release/prcw-theme/
+          (cd /tmp/release && zip -r "${GITHUB_WORKSPACE}/prcw-theme.zip" prcw-theme)
+
+      - name: Create or update GitHub Release with prcw-theme.zip
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG_NAME: ${{ inputs.tag || github.ref_name }}
+        run: |
+          if gh release view "$TAG_NAME" >/dev/null 2>&1; then
+            gh release upload "$TAG_NAME" prcw-theme.zip --clobber
+          else
+            gh release create "$TAG_NAME" prcw-theme.zip \
+              --title "PRCW Theme ${TAG_NAME}" \
+              --generate-notes
+          fi

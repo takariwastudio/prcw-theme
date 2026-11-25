@@ -3,6 +3,10 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
+if ( ! function_exists( 'get_field' ) ) {
+    return;
+}
+
 $bg           = get_field( 'background_image' );
 $logo         = get_field( 'logo_image' );
 $logo_width   = get_field( 'logo_width' ) ?: 335;

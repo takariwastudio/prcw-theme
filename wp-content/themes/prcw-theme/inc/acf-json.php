@@ -9,6 +9,7 @@ function prcw_acf_json_save_point( $path ) {
 add_filter( 'acf/settings/save_json', 'prcw_acf_json_save_point' );
 
 function prcw_acf_json_load_point( $paths ) {
+    $paths = is_array( $paths ) ? $paths : array();
     unset( $paths[0] );
     $paths[] = PRCW_THEME_DIR . '/acf-json';
     return $paths;

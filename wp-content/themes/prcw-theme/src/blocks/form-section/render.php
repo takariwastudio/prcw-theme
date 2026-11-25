@@ -3,9 +3,14 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
+if ( ! function_exists( 'get_field' ) ) {
+    return;
+}
+
 $heading    = get_field( 'heading' );
 $subheading = get_field( 'subheading' );
 $form       = get_field( 'form' );
+$form_html  = function_exists( 'prcw_render_cf7_form' ) ? prcw_render_cf7_form( $form ) : '';
 
 $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'prcw-form-section' ) );
 ?>
@@ -20,9 +25,9 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'prcw-form
       <p class="prcw-form-section__subheading"><?php echo esc_html( $subheading ); ?></p>
     <?php endif; ?>
 
-    <?php if ( $form ) : ?>
+    <?php if ( $form_html ) : ?>
       <div class="prcw-form-section__card">
-        <?php echo do_shortcode( '[contact-form-7 id="' . intval( $form->ID ) . '"]' ); ?>
+        <?php echo $form_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Rendered by CF7 shortcode ?>
       </div>
     <?php endif; ?>
 

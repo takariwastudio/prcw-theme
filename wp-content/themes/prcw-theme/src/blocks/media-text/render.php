@@ -3,6 +3,10 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
+if ( ! function_exists( 'get_field' ) ) {
+    return;
+}
+
 $media_position = get_field( 'media_position' ) ?: 'right';
 $media_type      = get_field( 'media_type' ) ?: 'image';
 $image           = get_field( 'image' );

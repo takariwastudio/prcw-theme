@@ -3,6 +3,10 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
+if ( ! function_exists( 'get_field' ) ) {
+    return;
+}
+
 $post_id     = get_the_ID();
 $year        = get_field( 'year', $post_id );
 $folder_path = get_field( 'dropbox_folder_path', $post_id );

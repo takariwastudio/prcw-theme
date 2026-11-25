@@ -3,6 +3,10 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
+if ( ! function_exists( 'get_field' ) ) {
+    return;
+}
+
 $section_title = get_field( 'section_title' ) ?: 'THE CREW';
 $group_photo    = get_field( 'group_photo' );
 $members        = get_field( 'members' );

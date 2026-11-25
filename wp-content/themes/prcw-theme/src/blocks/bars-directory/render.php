@@ -3,32 +3,38 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
+if ( ! function_exists( 'get_field' ) ) {
+    return;
+}
+
 $section_title = get_field( 'section_title' ) ?: 'OFFICIAL BARS GUIDE';
 $intro_text     = get_field( 'intro_text' );
 $bars           = get_field( 'bars' );
 
-if ( empty( $bars ) ) {
+if ( empty( $bars ) || ! is_array( $bars ) ) {
     return;
 }
 
 // Ciudades únicas, en el orden en que aparecen
 $cities = array();
 foreach ( $bars as $bar ) {
-    $city = trim( $bar['city'] );
+    $city = trim( (string) ( $bar['city'] ?? '' ) );
     if ( $city && ! in_array( $city, $cities, true ) ) {
         $cities[] = $city;
     }
 }
 
-// Datos para el mapa (solo bares con coordenadas)
+// Datos para el mapa (solo bares con coordenadas numéricas válidas)
 $map_points = array();
 foreach ( $bars as $bar ) {
-    if ( ! empty( $bar['lat'] ) && ! empty( $bar['lng'] ) ) {
+    $lat = $bar['lat'] ?? '';
+    $lng = $bar['lng'] ?? '';
+    if ( '' !== $lat && '' !== $lng && is_numeric( $lat ) && is_numeric( $lng ) ) {
         $map_points[] = array(
-            'lat'  => floatval( $bar['lat'] ),
-            'lng'  => floatval( $bar['lng'] ),
-            'name' => $bar['name'],
-            'city' => $bar['city'],
+            'lat'  => floatval( $lat ),
+            'lng'  => floatval( $lng ),
+            'name' => sanitize_text_field( (string) ( $bar['name'] ?? '' ) ),
+            'city' => sanitize_text_field( (string) ( $bar['city'] ?? '' ) ),
         );
     }
 }
@@ -64,17 +70,17 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'prcw-bars
 
     <div class="prcw-bars-directory__grid">
       <?php foreach ( $bars as $bar ) :
-        $photo       = $bar['photo'];
-        $name        = $bar['name'];
-        $city        = $bar['city'];
-        $description = $bar['description'];
-        $phone       = $bar['phone'];
-        $social_url  = $bar['social_url'];
-        $maps_url    = $bar['maps_url'];
+        $photo       = $bar['photo'] ?? null;
+        $name        = $bar['name'] ?? '';
+        $city        = $bar['city'] ?? '';
+        $description = $bar['description'] ?? '';
+        $phone       = $bar['phone'] ?? '';
+        $social_url  = $bar['social_url'] ?? '';
+        $maps_url    = $bar['maps_url'] ?? '';
       ?>
         <div class="prcw-bars-directory__card" data-city="<?php echo esc_attr( $city ); ?>">
 
-          <?php if ( $photo ) : ?>
+          <?php if ( is_array( $photo ) && ! empty( $photo['url'] ) ) : ?>
             <div class="prcw-bars-directory__card-image">
               <img src="<?php echo esc_url( $photo['url'] ); ?>" alt="<?php echo esc_attr( $name ); ?>">
             </div>

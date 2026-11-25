@@ -3,6 +3,10 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
+if ( ! function_exists( 'get_field' ) ) {
+    return;
+}
+
 $content_pieces = get_field( 'content_pieces' );
 
 if ( empty( $content_pieces ) ) {

@@ -8,6 +8,10 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
+if ( ! function_exists( 'get_field' ) ) {
+    return;
+}
+
 $titulo    = get_field( 'hero_titulo' );
 $texto     = get_field( 'hero_texto' );
 $imagen    = get_field( 'hero_imagen' );

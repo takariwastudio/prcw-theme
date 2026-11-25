@@ -3,9 +3,6 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-define( 'PRCW_BAR_NEW_PRODUCT_ID', 143 );
-define( 'PRCW_BAR_RENEWAL_PRODUCT_ID', 144 );
-
 /**
  * Obtiene la API key de LocationIQ sin exponerla en el repo.
  * Prioridad: constante PRCW_LOCATIONIQ_API_KEY > LOCATIONIQ_API_KEY > option > ACF option > filtro.
@@ -38,9 +35,17 @@ function prcw_get_locationiq_api_key() {
  * SOLO cuando se agrega uno de los 2 productos de Official Bars.
  */
 function prcw_bar_subscription_redirect_to_checkout( $url ) {
+    if ( ! class_exists( 'WooCommerce' ) || ! function_exists( 'wc_get_checkout_url' ) ) {
+        return $url;
+    }
+
     if ( isset( $_GET['add-to-cart'] ) ) {
-        $product_id = intval( $_GET['add-to-cart'] );
-        if ( in_array( $product_id, array( PRCW_BAR_NEW_PRODUCT_ID, PRCW_BAR_RENEWAL_PRODUCT_ID ), true ) ) {
+        $product_id  = absint( wp_unslash( $_GET['add-to-cart'] ) );
+        $new_id      = function_exists( 'prcw_get_bar_new_product_id' ) ? prcw_get_bar_new_product_id() : 143;
+        $renewal_id  = function_exists( 'prcw_get_bar_renewal_product_id' ) ? prcw_get_bar_renewal_product_id() : 144;
+        $allowed_ids = array_filter( array( $new_id, $renewal_id ) );
+
+        if ( $product_id > 0 && in_array( $product_id, $allowed_ids, true ) ) {
             return wc_get_checkout_url();
         }
     }
@@ -54,7 +59,14 @@ add_filter( 'woocommerce_add_to_cart_redirect', 'prcw_bar_subscription_redirect_
  * "subscription-type" (así no afecta a ningún otro CF7 del sitio).
  */
 function prcw_official_bars_script() {
-    $locationiq_key = prcw_get_locationiq_api_key();
+    if ( ! shortcode_exists( 'contact-form-7' ) && ! class_exists( 'WPCF7' ) ) {
+        return;
+    }
+
+    $locationiq_key     = prcw_get_locationiq_api_key();
+    $new_product_id     = function_exists( 'prcw_get_bar_new_product_id' ) ? prcw_get_bar_new_product_id() : 143;
+    $renewal_product_id = function_exists( 'prcw_get_bar_renewal_product_id' ) ? prcw_get_bar_renewal_product_id() : 144;
+    $wc_active          = class_exists( 'WooCommerce' );
     ?>
     <script>
     document.addEventListener('wpcf7mailsent', function (event) {
@@ -65,15 +77,16 @@ function prcw_official_bars_script() {
             return; // no es nuestro formulario, no hacemos nada
         }
 
-        var productId = null;
+        var wcActive = <?php echo $wc_active ? 'true' : 'false'; ?>;
+        var productId = 0;
 
         if (selected.value === 'New Subscription') {
-            productId = <?php echo PRCW_BAR_NEW_PRODUCT_ID; ?>;
+            productId = <?php echo intval( $new_product_id ); ?>;
         } else if (selected.value === 'Subscription Renewal') {
-            productId = <?php echo PRCW_BAR_RENEWAL_PRODUCT_ID; ?>;
+            productId = <?php echo intval( $renewal_product_id ); ?>;
         }
 
-        if (productId) {
+        if (wcActive && productId > 0) {
             window.location.href = '<?php echo esc_url( home_url( '/' ) ); ?>?add-to-cart=' + productId;
         }
     }, false);
@@ -91,13 +104,14 @@ function prcw_official_bars_script() {
     });
 // Autocomplete de dirección con LocationIQ (requiere API key configurada vía constante/filtro)
     (function () {
-        var locationIqKey = '<?php echo esc_js( $locationiq_key ); ?>';
-        if (!locationIqKey) {
-            console.warn('PRCW: LocationIQ API key no configurada. Define PRCW_LOCATIONIQ_API_KEY en wp-config.php o vía filtro prcw_locationiq_api_key.');
-            return;
-        }
         var input = document.querySelector('input[name="bar-address"]');
         if (!input) return;
+
+        var locationIqKey = '<?php echo esc_js( $locationiq_key ); ?>';
+        if (!locationIqKey) {
+            console.warn('PRCW: LocationIQ API key no configurada. Define PRCW_LOCATIONIQ_API_KEY en wp-config.php o en PRCW Settings.');
+            return;
+        }
 
         var wrapper = document.createElement('div');
         wrapper.className = 'prcw-address-autocomplete';

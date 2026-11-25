@@ -3,6 +3,10 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
+if ( ! function_exists( 'get_field' ) ) {
+    return;
+}
+
 $button_label = get_field( 'button_label' ) ?: 'APPLY HERE';
 $button_url   = get_field( 'button_url' );
 $icon         = get_field( 'icon' ) ?: 'alert-circle';

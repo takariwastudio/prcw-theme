@@ -83,12 +83,19 @@ Ambas opciones inyectan la key a `inc/official-bars.php:16` vía `prcw_get_locat
 
 La key anterior `pk.d23c...` estaba hardcodeada y ya fue removida de `inc/official-bars.php:95`. **Rota la key** en https://my.locationiq.com/dashboard si fue expuesta en git.
 
-Prioridad de resolución (`inc/official-bars.php:9`):
+Prioridad de resolución (`inc/official-bars.php`):
 1. `PRCW_LOCATIONIQ_API_KEY` constant
 2. `LOCATIONIQ_API_KEY` constant (fallback)
 3. `get_option('prcw_locationiq_api_key')`
 4. `get_field('locationiq_api_key','option')` (ACF en PRCW Settings)
 5. `apply_filters('prcw_locationiq_api_key', '')`
+
+## Configuración de IDs de WooCommerce (PRCW Settings)
+
+En **WP Admin > PRCW Settings > WooCommerce Product IDs** (registrado en `inc/acf-options.php`) se configuran sin tocar código:
+- **Official Bars — New Subscription Product ID** (`bar_new_product_id`, fallback `143`, constante opcional `PRCW_BAR_NEW_PRODUCT_ID`)
+- **Official Bars — Subscription Renewal Product ID** (`bar_renewal_product_id`, fallback `144`, constante opcional `PRCW_BAR_RENEWAL_PRODUCT_ID`)
+- **Tip Jar (Donation) Product ID** (`tip_jar_product_id`, fallback `327`, constante opcional `PRCW_TIP_JAR_PRODUCT_ID`)
 
 ## Scripts NPM
 

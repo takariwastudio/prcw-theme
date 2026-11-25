@@ -11,7 +11,10 @@ document.addEventListener("DOMContentLoaded", () => {
         panels.forEach((p) => p.classList.remove("is-active"));
 
         tab.classList.add("is-active");
-        block.querySelector("#" + target).classList.add("is-active");
+        const panel = Array.from(panels).find((p) => p.id === target);
+        if (panel) {
+          panel.classList.add("is-active");
+        }
       });
     });
   });

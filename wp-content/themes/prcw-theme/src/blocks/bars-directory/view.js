@@ -11,6 +11,27 @@ L.Icon.Default.mergeOptions({
   shadowUrl: markerShadow,
 });
 
+const createPopupContent = (point) => {
+  const container = document.createElement("div");
+  const name = point && point.name != null ? String(point.name).trim() : "";
+  const city = point && point.city != null ? String(point.city).trim() : "";
+
+  if (name) {
+    const strong = document.createElement("strong");
+    strong.textContent = name;
+    container.appendChild(strong);
+  }
+
+  if (city) {
+    if (name) {
+      container.appendChild(document.createElement("br"));
+    }
+    container.appendChild(document.createTextNode(city));
+  }
+
+  return container;
+};
+
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".prcw-bars-directory").forEach((block) => {
     const mapEl = block.querySelector(".prcw-bars-directory__map");
@@ -35,12 +56,27 @@ document.addEventListener("DOMContentLoaded", () => {
         maxZoom: 19,
       }).addTo(map);
 
-      markers = points.map((point) => {
-        const marker = L.marker([point.lat, point.lng]).addTo(map);
-        marker.bindPopup(`<strong>${point.name}</strong><br>${point.city}`);
-        marker.cityName = point.city;
-        return marker;
-      });
+      markers = (Array.isArray(points) ? points : [])
+        .filter((point) => {
+          const lat = Number(point && point.lat);
+          const lng = Number(point && point.lng);
+          return (
+            point &&
+            point.lat !== "" &&
+            point.lng !== "" &&
+            Number.isFinite(lat) &&
+            Number.isFinite(lng)
+          );
+        })
+        .map((point) => {
+          const marker = L.marker([Number(point.lat), Number(point.lng)]).addTo(
+            map,
+          );
+          marker.bindPopup(createPopupContent(point));
+          marker.cityName =
+            point && point.city != null ? String(point.city) : "";
+          return marker;
+        });
 
       if (markers.length) {
         const group = L.featureGroup(markers);

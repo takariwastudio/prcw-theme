@@ -3,18 +3,33 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-wp_enqueue_script( 'wc-single-product' );
-wp_enqueue_script( 'wc-add-to-cart' );
+if ( ! function_exists( 'get_field' ) ) {
+    return;
+}
+
+$wc_active = class_exists( 'WooCommerce' )
+    && function_exists( 'wc_get_product' )
+    && function_exists( 'woocommerce_template_single_add_to_cart' )
+    && function_exists( 'wc_get_cart_url' );
+
+if ( $wc_active ) {
+    wp_enqueue_script( 'wc-single-product' );
+    wp_enqueue_script( 'wc-add-to-cart' );
+}
 
 $logo          = get_field( 'logo' );
 $product_field = get_field( 'product' );
+if ( empty( $product_field ) && function_exists( 'prcw_get_tip_jar_product_id' ) ) {
+    $product_field = prcw_get_tip_jar_product_id();
+}
 $payment_text  = get_field( 'payment_text' ) ?: 'YOU CAN DONATE THROUGH PAYPAL, STRIPE OR ATH MÓVIL!';
-$intro_text = get_field( 'intro_text' );
-$stat_image = get_field( 'stat_image' );
-$stat_text  = get_field( 'stat_text' );
+$intro_text    = get_field( 'intro_text' );
+$stat_image    = get_field( 'stat_image' );
+$stat_text     = get_field( 'stat_text' );
 
-$card_classes = 'prcw-donation__card';
-if ( $stat_image ) {
+$has_stat_image = is_array( $stat_image ) && ! empty( $stat_image['url'] );
+$card_classes   = 'prcw-donation__card';
+if ( $has_stat_image ) {
     $card_classes .= ' prcw-donation__card--with-stat';
 }
 
@@ -28,9 +43,9 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'prcw-dona
 
   <div class="<?php echo esc_attr( $card_classes ); ?>">
 
-    <?php if ( $stat_image ) : ?>
+    <?php if ( $has_stat_image ) : ?>
       <div class="prcw-donation__stat">
-        <img src="<?php echo esc_url( $stat_image['url'] ); ?>" alt="">
+        <img src="<?php echo esc_url( $stat_image['url'] ); ?>" alt="<?php echo esc_attr( $stat_image['alt'] ?? '' ); ?>">
         <?php if ( $stat_text ) : ?>
           <div class="prcw-donation__stat-overlay"></div>
           <p class="prcw-donation__stat-text"><?php echo esc_html( $stat_text ); ?></p>
@@ -38,9 +53,9 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'prcw-dona
       </div>
     <?php endif; ?>
 
-    <?php if ( $logo ) : ?>
+    <?php if ( is_array( $logo ) && ! empty( $logo['url'] ) ) : ?>
       <div class="prcw-donation__logo">
-        <img src="<?php echo esc_url( $logo['url'] ); ?>" alt="<?php echo esc_attr( $logo['alt'] ); ?>">
+        <img src="<?php echo esc_url( $logo['url'] ); ?>" alt="<?php echo esc_attr( $logo['alt'] ?? '' ); ?>">
       </div>
     <?php endif; ?>
 
@@ -48,13 +63,17 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'prcw-dona
       <div class="prcw-donation__form">
         <p class="prcw-donation__label">DONATION</p>
         <?php
-        if ( $product_field ) :
+        if ( $wc_active && $product_field ) :
           $wc_product = wc_get_product( $product_field );
           if ( $wc_product ) :
             global $product;
-            $product = $wc_product;
+            $previous_product = $product ?? null;
+            $product          = $wc_product;
             woocommerce_template_single_add_to_cart();
+            $product          = $previous_product;
           endif;
+        elseif ( is_admin() && ! $wc_active ) :
+          echo '<p>' . esc_html__( 'WooCommerce debe estar activo para mostrar el formulario de donación.', 'prcw-theme' ) . '</p>';
         endif;
         ?>
       </div>
@@ -66,18 +85,20 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'prcw-dona
 
   </div>
 
-  <div class="prcw-donation__modal">
-    <div class="prcw-donation__modal-overlay"></div>
-    <div class="prcw-donation__modal-box">
-      <p class="prcw-donation__modal-text">¡Gracias! Tu donación se agregó al carrito.</p>
-      <div class="prcw-donation__modal-actions">
-        <a class="prcw-donation__modal-btn prcw-donation__modal-btn--primary" href="<?php echo esc_url( wc_get_cart_url() ); ?>">
-          Ir al carrito
-        </a>
-        <button type="button" class="prcw-donation__modal-btn prcw-donation__modal-btn--secondary prcw-donation__modal-close">
-          Seguir navegando
-        </button>
+  <?php if ( $wc_active ) : ?>
+    <div class="prcw-donation__modal">
+      <div class="prcw-donation__modal-overlay"></div>
+      <div class="prcw-donation__modal-box">
+        <p class="prcw-donation__modal-text">¡Gracias! Tu donación se agregó al carrito.</p>
+        <div class="prcw-donation__modal-actions">
+          <a class="prcw-donation__modal-btn prcw-donation__modal-btn--primary" href="<?php echo esc_url( wc_get_cart_url() ); ?>">
+            Ir al carrito
+          </a>
+          <button type="button" class="prcw-donation__modal-btn prcw-donation__modal-btn--secondary prcw-donation__modal-close">
+            Seguir navegando
+          </button>
+        </div>
       </div>
     </div>
-  </div>
+  <?php endif; ?>
 </div>

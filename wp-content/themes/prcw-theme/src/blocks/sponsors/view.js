@@ -11,7 +11,10 @@ document.addEventListener('DOMContentLoaded', () => {
         panels.forEach((p) => p.classList.remove('is-active'));
 
         tab.classList.add('is-active');
-        block.querySelector(`.prcw-sponsors__panel[data-tab="${target}"]`).classList.add('is-active');
+        const panel = Array.from(panels).find((p) => p.getAttribute('data-tab') === target);
+        if (panel) {
+          panel.classList.add('is-active');
+        }
       });
     });
   });

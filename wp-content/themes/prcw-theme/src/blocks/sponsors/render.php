@@ -3,6 +3,10 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
+if ( ! function_exists( 'get_field' ) ) {
+    return;
+}
+
 $section_title = get_field( 'section_title' ) ?: 'OUR SPONSORS';
 $sponsors       = get_field( 'sponsors' );
 

@@ -3,6 +3,10 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
+if ( ! function_exists( 'get_field' ) ) {
+    return;
+}
+
 $image         = get_field( 'image' );
 $image_width   = get_field( 'image_width' ) ?: 450;
 $sections      = get_field( 'sections' );

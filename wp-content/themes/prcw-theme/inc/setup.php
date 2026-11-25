@@ -84,3 +84,60 @@ function prcw_enqueue_scroll_animations() {
     );
 }
 add_action( 'wp_enqueue_scripts', 'prcw_enqueue_scroll_animations' );
+
+/**
+ * Renderiza un formulario de Contact Form 7 de forma segura.
+ * Evita warnings si el campo devuelve ID/array y evita imprimir el shortcode crudo si CF7 está inactivo.
+ */
+function prcw_render_cf7_form( $form ) {
+    if ( empty( $form ) || ! shortcode_exists( 'contact-form-7' ) ) {
+        return '';
+    }
+
+    $form_id = 0;
+    if ( is_object( $form ) && isset( $form->ID ) ) {
+        $form_id = absint( $form->ID );
+    } elseif ( is_array( $form ) && isset( $form['ID'] ) ) {
+        $form_id = absint( $form['ID'] );
+    } elseif ( is_numeric( $form ) ) {
+        $form_id = absint( $form );
+    }
+
+    if ( ! $form_id ) {
+        return '';
+    }
+
+    return do_shortcode( sprintf( '[contact-form-7 id="%d"]', $form_id ) );
+}
+
+/**
+ * Aviso informativo en WP Admin si faltan plugins requeridos por el theme.
+ */
+function prcw_missing_dependencies_admin_notice() {
+    if ( ! current_user_can( 'activate_plugins' ) ) {
+        return;
+    }
+
+    $missing = array();
+
+    if ( ! function_exists( 'get_field' ) || ! function_exists( 'acf_register_block_type' ) ) {
+        $missing[] = 'Advanced Custom Fields PRO';
+    }
+    if ( ! class_exists( 'WooCommerce' ) ) {
+        $missing[] = 'WooCommerce';
+    }
+    if ( ! class_exists( 'WPCF7' ) && ! shortcode_exists( 'contact-form-7' ) ) {
+        $missing[] = 'Contact Form 7';
+    }
+
+    if ( empty( $missing ) ) {
+        return;
+    }
+
+    printf(
+        '<div class="notice notice-warning"><p><strong>PRCW Theme:</strong> %s <code>%s</code>.</p></div>',
+        esc_html__( 'Para el funcionamiento completo del sitio activa:', 'prcw-theme' ),
+        esc_html( implode( ', ', $missing ) )
+    );
+}
+add_action( 'admin_notices', 'prcw_missing_dependencies_admin_notice' );

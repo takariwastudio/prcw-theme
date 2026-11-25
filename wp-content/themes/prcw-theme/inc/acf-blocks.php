@@ -27,6 +27,10 @@ add_filter( 'block_categories_all', 'prcw_block_categories' );
  * NO hay que tocar este archivo — se registra sola.
  */
 function prcw_register_acf_blocks() {
+    if ( ! function_exists( 'acf_register_block_type' ) ) {
+        return;
+    }
+
     $blocks_dir = PRCW_THEME_DIR . '/build/blocks';
 
     if ( ! is_dir( $blocks_dir ) ) {
@@ -34,6 +38,9 @@ function prcw_register_acf_blocks() {
     }
 
     $block_folders = glob( $blocks_dir . '/*', GLOB_ONLYDIR );
+    if ( empty( $block_folders ) || ! is_array( $block_folders ) ) {
+        return;
+    }
 
     foreach ( $block_folders as $block_folder ) {
         if ( file_exists( $block_folder . '/block.json' ) ) {

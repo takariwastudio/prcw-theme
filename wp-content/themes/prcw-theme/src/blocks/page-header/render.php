@@ -3,6 +3,10 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
+if ( ! function_exists( 'get_field' ) ) {
+    return;
+}
+
 $bg          = get_field( 'background_image' );
 $title       = get_field( 'title' );
 $title_color = get_field( 'title_color' ) ?: '#7a7a7a';

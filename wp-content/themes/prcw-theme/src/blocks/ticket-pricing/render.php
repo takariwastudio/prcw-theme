@@ -3,12 +3,28 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
+if ( ! function_exists( 'get_field' ) ) {
+    return;
+}
+
+if (
+    ! class_exists( 'WooCommerce' )
+    || ! function_exists( 'wc_get_product' )
+    || ! function_exists( 'wc_price' )
+    || ! function_exists( 'wc_get_cart_url' )
+) {
+    if ( is_admin() ) {
+        echo '<p>' . esc_html__( 'WooCommerce debe estar activo para mostrar los tickets.', 'prcw-theme' ) . '</p>';
+    }
+    return;
+}
+
 wp_enqueue_script( 'wc-add-to-cart' );
 
 $section_title = get_field( 'section_title' ) ?: 'PRE-SALE (ALL ACCESS)';
 $tickets        = get_field( 'tickets' );
 
-if ( empty( $tickets ) ) {
+if ( empty( $tickets ) || ! is_array( $tickets ) ) {
     return;
 }
 
@@ -24,9 +40,9 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'prcw-tick
     <div class="prcw-ticket-pricing__bg">
       <div class="prcw-ticket-pricing__grid">
         <?php foreach ( $tickets as $ticket ) :
-          $product_field = $ticket['product'];
-          $description   = $ticket['description'];
-          $button_label  = $ticket['button_label'] ?: 'BUY NOW';
+          $product_field = $ticket['product'] ?? null;
+          $description   = $ticket['description'] ?? '';
+          $button_label  = ! empty( $ticket['button_label'] ) ? $ticket['button_label'] : 'BUY NOW';
 
           if ( ! $product_field ) {
             continue;

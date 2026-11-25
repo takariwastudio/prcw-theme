@@ -3,6 +3,10 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
+if ( ! function_exists( 'get_field' ) ) {
+    return;
+}
+
 $eyebrow         = get_field( 'eyebrow' );
 $highlight_text  = get_field( 'highlight_text' );
 $body_content    = get_field( 'body_content' );

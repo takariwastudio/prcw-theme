@@ -3,6 +3,10 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
+if ( ! function_exists( 'get_field' ) ) {
+    return;
+}
+
 $last_events_heading = get_field( 'last_events_heading' ) ?: 'LAST EVENTS';
 $split                = prcw_get_event_years_split();
 $active_years         = $split['active'];

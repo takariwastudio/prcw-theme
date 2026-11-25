@@ -3,6 +3,10 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
+if ( ! function_exists( 'get_field' ) ) {
+    return;
+}
+
 $title        = get_field( 'title' );
 $image        = get_field( 'image' );
 $button_label = get_field( 'button_label' ) ?: 'GET TICKETS NOW!';

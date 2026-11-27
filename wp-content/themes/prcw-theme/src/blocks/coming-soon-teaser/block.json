@@ -1,0 +1,17 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "prcw/coming-soon-teaser",
+  "title": "PRCW Coming Soon (Gallery & Notifications)",
+  "category": "prcw-blocks",
+  "icon": "format-gallery",
+  "description": "Sección teaser para anunciar galería próximamente e invitar a activar notificaciones (scroll a Newsletter, redes sociales o formulario CF7 opcional).",
+  "keywords": ["coming soon", "gallery", "notifications", "teaser", "2027"],
+  "acf": { "mode": "preview", "renderTemplate": "render.php" },
+  "supports": { "align": ["wide", "full"], "anchor": true },
+  "textdomain": "prcw-theme",
+  "editorScript": "file:./index.js",
+  "viewScript": "file:./view.js",
+  "style": "file:./style-index.css",
+  "editorStyle": "file:./index.css"
+}

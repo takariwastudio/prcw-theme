@@ -21,7 +21,7 @@ $wrapper_attributes = get_block_wrapper_attributes( array( 'class' => 'prcw-foot
 ?>
 <footer <?php echo $wrapper_attributes; ?>>
 
-  <div class="prcw-footer__newsletter">
+  <div id="newsletter" class="prcw-footer__newsletter">
     <div class="prcw-footer__newsletter-inner">
       <?php if ( $nl_heading ) : ?>
         <h3 class="prcw-footer__nl-heading"><?php echo esc_html( $nl_heading ); ?></h3>

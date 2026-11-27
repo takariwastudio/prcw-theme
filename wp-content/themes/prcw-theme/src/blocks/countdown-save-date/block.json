@@ -1,0 +1,17 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "prcw/countdown-save-date",
+  "title": "PRCW Countdown & Save the Date",
+  "category": "prcw-blocks",
+  "icon": "calendar-alt",
+  "description": "Contador regresivo en vivo (hora de Puerto Rico) con botones Save the Date para Google Calendar y Apple / Outlook (.ics).",
+  "keywords": ["countdown", "calendar", "save the date", "2027", "event"],
+  "acf": { "mode": "preview", "renderTemplate": "render.php" },
+  "supports": { "align": ["wide", "full"], "anchor": true },
+  "textdomain": "prcw-theme",
+  "editorScript": "file:./index.js",
+  "viewScript": "file:./view.js",
+  "style": "file:./style-index.css",
+  "editorStyle": "file:./index.css"
+}

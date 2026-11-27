@@ -1,0 +1,234 @@
+.prcw-countdown {
+  position: relative;
+  padding: 64px 20px;
+  background: linear-gradient(180deg, #ffffff 0%, #eafcfc 50%, #ffffff 100%);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.84);
+  }
+
+  &__inner {
+    position: relative;
+    z-index: 1;
+    max-width: 1020px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  &__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: "League Spartan", sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--wp--preset--color--teal, #43c2d2);
+    font-size: var(--wp--preset--font-size--xs);
+    margin: 0 0 12px;
+  }
+
+  &__eyebrow-icon svg {
+    width: 18px;
+    height: 18px;
+    display: block;
+  }
+
+  &__title {
+    font-family: "League Spartan", sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #494848;
+    font-size: var(--wp--preset--font-size--xl);
+    line-height: 1.05;
+    margin: 0 0 16px;
+  }
+
+  &__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #ffffff;
+    border: 1px solid rgba(67, 194, 210, 0.45);
+    border-radius: 999px;
+    padding: 8px 20px;
+    font-family: "League Spartan", sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #494848;
+    font-size: var(--wp--preset--font-size--xs);
+    margin: 0 0 20px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+  }
+
+  &__badge-icon {
+    color: var(--wp--preset--color--accent, #f04d4f);
+
+    svg {
+      width: 16px;
+      height: 16px;
+      display: block;
+    }
+  }
+
+  &__description {
+    font-family: "Jost", sans-serif;
+    font-weight: 400;
+    color: #6b6b6b;
+    font-size: var(--wp--preset--font-size--base);
+    line-height: 1.5;
+    max-width: 760px;
+    margin: 0 0 36px;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  &__timer {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(120px, 1fr));
+    gap: 14px;
+    width: 100%;
+    max-width: 760px;
+    margin: 0 0 36px;
+  }
+
+  &__unit {
+    background: #ffffff;
+    border: 1px solid #e6eef0;
+    border-bottom: 4px solid var(--wp--preset--color--teal, #43c2d2);
+    border-radius: 10px;
+    padding: 22px 16px 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  }
+
+  &__number {
+    font-family: "League Spartan", sans-serif;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+    color: var(--wp--preset--color--accent, #f04d4f);
+    font-size: clamp(40px, 5vw, 64px);
+    line-height: 1;
+    margin: 0 0 8px;
+  }
+
+  &__label {
+    font-family: "Jost", sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #7a7a7a;
+    font-size: 13px;
+  }
+
+  &__live {
+    display: none;
+    font-family: "League Spartan", sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--wp--preset--color--teal, #43c2d2);
+    font-size: var(--wp--preset--font-size--md);
+    margin: 0 0 28px;
+
+    &.is-visible {
+      display: block;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    gap: 14px;
+    width: 100%;
+    max-width: 560px;
+  }
+
+  &__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px 26px;
+    font-family: "League Spartan", sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: var(--wp--preset--font-size--xs);
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+      transform 0.2s ease,
+      opacity 0.2s ease,
+      background-color 0.2s ease,
+      color 0.2s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+
+    &--primary {
+      background: var(--wp--preset--color--accent, #f04d4f);
+      color: #ffffff;
+      border: 2px solid var(--wp--preset--color--accent, #f04d4f);
+
+      &:hover {
+        opacity: 0.92;
+        color: #ffffff;
+      }
+    }
+
+    &--secondary {
+      background: #ffffff;
+      color: #494848;
+      border: 2px solid var(--wp--preset--color--teal, #43c2d2);
+
+      &:hover {
+        background: var(--wp--preset--color--teal, #43c2d2);
+        color: #ffffff;
+      }
+    }
+  }
+
+  &__btn-icon svg {
+    width: 18px;
+    height: 18px;
+    display: block;
+  }
+
+  @media (min-width: 640px) {
+    &__timer {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    &__actions {
+      flex-direction: row;
+      max-width: none;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    padding: 96px 24px;
+
+    &__unit {
+      padding: 28px 20px 22px;
+    }
+  }
+}

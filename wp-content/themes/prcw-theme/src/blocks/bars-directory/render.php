@@ -24,11 +24,26 @@ foreach ( $bars as $bar ) {
     }
 }
 
-// Datos para el mapa (solo bares con coordenadas numéricas válidas)
+// Datos para el mapa (usa lat/lng manuales o los extrae automáticamente del enlace de Google Maps)
 $map_points = array();
 foreach ( $bars as $bar ) {
-    $lat = $bar['lat'] ?? '';
-    $lng = $bar['lng'] ?? '';
+    $lat      = $bar['lat'] ?? '';
+    $lng      = $bar['lng'] ?? '';
+    $maps_url = (string) ( $bar['maps_url'] ?? '' );
+
+    if ( ( '' === $lat || '' === $lng || ! is_numeric( $lat ) || ! is_numeric( $lng ) ) && '' !== $maps_url ) {
+        if ( preg_match( '/!3d(-?\d+\.\d+)!4d(-?\d+\.\d+)/', $maps_url, $m ) ) {
+            $lat = $m[1];
+            $lng = $m[2];
+        } elseif ( preg_match( '/@(-?\d+\.\d+),(-?\d+\.\d+)/', $maps_url, $m ) ) {
+            $lat = $m[1];
+            $lng = $m[2];
+        } elseif ( preg_match( '/[?&]q=(-?\d+\.\d+),(-?\d+\.\d+)/', $maps_url, $m ) ) {
+            $lat = $m[1];
+            $lng = $m[2];
+        }
+    }
+
     if ( '' !== $lat && '' !== $lng && is_numeric( $lat ) && is_numeric( $lng ) ) {
         $map_points[] = array(
             'lat'  => floatval( $lat ),

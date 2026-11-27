@@ -129,10 +129,10 @@
                         "class": "",
                         "id": ""
                     },
-                    "default_value": "Ej: San Juan",
+                    "default_value": "",
                     "maxlength": "",
                     "allow_in_bindings": 0,
-                    "placeholder": "",
+                    "placeholder": "Ej: San Juan",
                     "prepend": "",
                     "append": "",
                     "parent_repeater": "field_6a6a1ff0bd947"
@@ -154,7 +154,7 @@
                     "default_value": "",
                     "maxlength": "",
                     "allow_in_bindings": 0,
-                    "rows": "",
+                    "rows": 2,
                     "placeholder": "",
                     "new_lines": "",
                     "parent_repeater": "field_6a6a1ff0bd947"
@@ -176,7 +176,7 @@
                     "default_value": "",
                     "maxlength": "",
                     "allow_in_bindings": 0,
-                    "placeholder": "",
+                    "placeholder": "(787) 000-0000",
                     "prepend": "",
                     "append": "",
                     "parent_repeater": "field_6a6a1ff0bd947"
@@ -197,7 +197,7 @@
                     },
                     "default_value": "",
                     "allow_in_bindings": 0,
-                    "placeholder": "",
+                    "placeholder": "https://instagram.com/...",
                     "parent_repeater": "field_6a6a1ff0bd947"
                 },
                 {
@@ -206,7 +206,7 @@
                     "name": "maps_url",
                     "aria-label": "",
                     "type": "url",
-                    "instructions": "",
+                    "instructions": "Si pegas el enlace largo de Google Maps con coordenadas (@lat,lng), el pin del mapa se detecta solo.",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -214,9 +214,9 @@
                         "class": "",
                         "id": ""
                     },
-                    "default_value": "Link para \"Cómo llegar\"",
+                    "default_value": "",
                     "allow_in_bindings": 0,
-                    "placeholder": "",
+                    "placeholder": "https://www.google.com/maps/place/...",
                     "parent_repeater": "field_6a6a1ff0bd947"
                 },
                 {
@@ -225,20 +225,20 @@
                     "name": "lat",
                     "aria-label": "",
                     "type": "number",
-                    "instructions": "",
+                    "instructions": "Opcional si el link de Google Maps ya incluye coordenadas.",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "",
+                        "width": "50",
                         "class": "",
                         "id": ""
                     },
-                    "default_value": "Para el pin del mapa",
+                    "default_value": "",
                     "min": "",
                     "max": "",
                     "allow_in_bindings": 0,
-                    "placeholder": "",
-                    "step": "",
+                    "placeholder": "18.4655",
+                    "step": "any",
                     "prepend": "",
                     "append": "",
                     "parent_repeater": "field_6a6a1ff0bd947"
@@ -249,20 +249,20 @@
                     "name": "lng",
                     "aria-label": "",
                     "type": "number",
-                    "instructions": "",
+                    "instructions": "Opcional si el link de Google Maps ya incluye coordenadas.",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "",
+                        "width": "50",
                         "class": "",
                         "id": ""
                     },
-                    "default_value": "Para el pin del mapa",
+                    "default_value": "",
                     "min": "",
                     "max": "",
                     "allow_in_bindings": 0,
-                    "placeholder": "",
-                    "step": "",
+                    "placeholder": "-66.1057",
+                    "step": "any",
                     "prepend": "",
                     "append": "",
                     "parent_repeater": "field_6a6a1ff0bd947"
@@ -291,5 +291,5 @@
     "display_title": "",
     "allow_ai_access": false,
     "ai_description": "",
-    "modified": 1785340472
+    "modified": 1795791800
 }

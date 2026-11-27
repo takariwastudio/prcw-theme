@@ -122,6 +122,17 @@ function prcw_official_bars_script() {
         list.className = 'prcw-address-suggestions';
         wrapper.appendChild(list);
 
+        var mapContainer = document.getElementById('prcw-address-map');
+        var mapIframe = null;
+        if (mapContainer) {
+            mapIframe = document.createElement('iframe');
+            mapIframe.title = 'Bar Location Preview';
+            mapIframe.loading = 'lazy';
+            mapIframe.src = 'https://www.openstreetmap.org/export/embed.html?bbox=-67.35%2C17.85%2C-65.20%2C18.58&layer=mapnik';
+            mapContainer.innerHTML = '';
+            mapContainer.appendChild(mapIframe);
+        }
+
         var debounceTimer;
 
         input.addEventListener('input', function () {
@@ -133,37 +144,54 @@ function prcw_official_bars_script() {
                 return;
             }
 
-list.innerHTML = '<li class="prcw-address-loading">Searching, please wait...</li>';
+            list.innerHTML = '<li class="prcw-address-loading">Searching, please wait...</li>';
 
             debounceTimer = setTimeout(function () {
-var controller = new AbortController();
-var timeoutId = setTimeout(function () { controller.abort(); }, 5000);
+                var controller = new AbortController();
+                var timeoutId = setTimeout(function () { controller.abort(); }, 5000);
 
-fetch('https://api.locationiq.com/v1/autocomplete?key=' + encodeURIComponent(locationIqKey) + '&q=' + encodeURIComponent(query) + '&limit=5', { signal: controller.signal })
-    .then(function (res) {
-        clearTimeout(timeoutId);
-        if (!res.ok) {
-            return []; // sin resultados (404) u otro error — mostramos lista vacía en vez de romper
-        }
-        return res.json();
-    })
-.then(function (data) {
-    list.innerHTML = '';
-    if (!Array.isArray(data) || !data.length) return;
+                fetch('https://api.locationiq.com/v1/autocomplete?key=' + encodeURIComponent(locationIqKey) + '&q=' + encodeURIComponent(query) + '&countrycodes=pr,us&limit=5', { signal: controller.signal })
+                    .then(function (res) {
+                        clearTimeout(timeoutId);
+                        if (!res.ok) {
+                            return [];
+                        }
+                        return res.json();
+                    })
+                    .then(function (data) {
+                        list.innerHTML = '';
+                        if (!Array.isArray(data) || !data.length) return;
 
-    data.forEach(function (place) {
-        var li = document.createElement('li');
-        li.textContent = place.display_name;
-        li.addEventListener('click', function () {
-            input.value = place.display_name;
-            list.innerHTML = '';
-        });
-        list.appendChild(li);
-    });
-})                    .catch(function () {
+                        data.forEach(function (place) {
+                            var li = document.createElement('li');
+                            li.textContent = place.display_name;
+                            li.addEventListener('click', function () {
+                                input.value = place.display_name;
+                                var cityInput = document.querySelector('input[name="bar-city"]');
+                                if (cityInput && place.address) {
+                                    var detectedCity = place.address.city || place.address.town || place.address.village || place.address.county || '';
+                                    if (detectedCity) {
+                                        cityInput.value = detectedCity;
+                                    }
+                                }
+                                if (mapIframe && place.lat && place.lon) {
+                                    var lat = parseFloat(place.lat);
+                                    var lon = parseFloat(place.lon);
+                                    if (!isNaN(lat) && !isNaN(lon)) {
+                                        var delta = 0.006;
+                                        var bbox = [lon - delta, lat - delta, lon + delta, lat + delta].join('%2C');
+                                        mapIframe.src = 'https://www.openstreetmap.org/export/embed.html?bbox=' + bbox + '&layer=mapnik&marker=' + encodeURIComponent(lat + ',' + lon);
+                                    }
+                                }
+                                list.innerHTML = '';
+                            });
+                            list.appendChild(li);
+                        });
+                    })
+                    .catch(function () {
                         list.innerHTML = '';
                     });
-            }, 250); // espera 400ms sin escribir antes de buscar, para no saturar la API
+            }, 250);
         });
 
         document.addEventListener('click', function (e) {

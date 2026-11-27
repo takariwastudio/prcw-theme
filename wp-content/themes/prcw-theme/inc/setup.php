@@ -141,3 +141,28 @@ function prcw_missing_dependencies_admin_notice() {
     );
 }
 add_action( 'admin_notices', 'prcw_missing_dependencies_admin_notice' );
+
+/**
+ * Purga automáticamente cachés de WordPress / SiteGround / plugins de caché
+ * la primera vez que se ejecuta una nueva versión del theme.
+ */
+function prcw_maybe_purge_caches_on_version_change() {
+    if ( get_option( 'prcw_flushed_version' ) === PRCW_THEME_VERSION ) {
+        return;
+    }
+
+    update_option( 'prcw_flushed_version', PRCW_THEME_VERSION, true );
+
+    if ( function_exists( 'wp_clean_themes_cache' ) ) {
+        wp_clean_themes_cache();
+    }
+    if ( function_exists( 'wp_cache_flush' ) ) {
+        wp_cache_flush();
+    }
+    if ( function_exists( 'sg_cachepress_purge_everything' ) ) {
+        sg_cachepress_purge_everything();
+    } elseif ( function_exists( 'sg_cachepress_purge_cache' ) ) {
+        sg_cachepress_purge_cache();
+    }
+}
+add_action( 'init', 'prcw_maybe_purge_caches_on_version_change', 20 );

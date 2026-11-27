@@ -22,9 +22,18 @@ function prcw_block_categories( $categories ) {
 add_filter( 'block_categories_all', 'prcw_block_categories' );
 
 /**
- * Registra automáticamente todos los bloques ACF dentro de /blocks
- * Así, cada vez que crees una nueva carpeta con su block.json,
- * NO hay que tocar este archivo — se registra sola.
+ * Asigna PRCW_THEME_VERSION a todos los bloques prcw/* para invalidar caché de CSS/JS al actualizar el theme.
+ */
+function prcw_inject_block_version( $metadata ) {
+    if ( ! empty( $metadata['name'] ) && str_starts_with( (string) $metadata['name'], 'prcw/' ) && empty( $metadata['version'] ) ) {
+        $metadata['version'] = PRCW_THEME_VERSION;
+    }
+    return $metadata;
+}
+add_filter( 'block_type_metadata', 'prcw_inject_block_version' );
+
+/**
+ * Registra automáticamente todos los bloques ACF dentro de /build/blocks.
  */
 function prcw_register_acf_blocks() {
     if ( ! function_exists( 'acf_register_block_type' ) ) {
@@ -49,3 +58,41 @@ function prcw_register_acf_blocks() {
     }
 }
 add_action( 'init', 'prcw_register_acf_blocks' );
+
+/**
+ * Evita que plugins como SiteGround Speed Optimizer (sg-cachepress) re-minifiquen o combinen
+ * de forma incompatible los bundles ya compilados por webpack (build/blocks/*).
+ */
+function prcw_exclude_block_styles_from_sgo( $exclude_list ) {
+    $exclude_list = is_array( $exclude_list ) ? $exclude_list : array();
+    $wp_styles    = wp_styles();
+
+    if ( $wp_styles && ! empty( $wp_styles->registered ) ) {
+        foreach ( array_keys( $wp_styles->registered ) as $handle ) {
+            if ( str_starts_with( (string) $handle, 'wp-block-prcw-' ) || str_starts_with( (string) $handle, 'prcw-' ) ) {
+                $exclude_list[] = $handle;
+            }
+        }
+    }
+
+    return array_values( array_unique( $exclude_list ) );
+}
+add_filter( 'sgo_css_combine_exclude', 'prcw_exclude_block_styles_from_sgo' );
+add_filter( 'sgo_css_minify_exclude', 'prcw_exclude_block_styles_from_sgo' );
+
+function prcw_exclude_block_scripts_from_sgo( $exclude_list ) {
+    $exclude_list = is_array( $exclude_list ) ? $exclude_list : array();
+    $wp_scripts   = wp_scripts();
+
+    if ( $wp_scripts && ! empty( $wp_scripts->registered ) ) {
+        foreach ( array_keys( $wp_scripts->registered ) as $handle ) {
+            if ( str_starts_with( (string) $handle, 'prcw-' ) ) {
+                $exclude_list[] = $handle;
+            }
+        }
+    }
+
+    return array_values( array_unique( $exclude_list ) );
+}
+add_filter( 'sgo_js_minify_exclude', 'prcw_exclude_block_scripts_from_sgo' );
+add_filter( 'sgo_javascript_combine_exclude', 'prcw_exclude_block_scripts_from_sgo' );

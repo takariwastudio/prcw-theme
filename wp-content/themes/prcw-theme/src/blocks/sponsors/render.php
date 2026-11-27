@@ -10,14 +10,14 @@ if ( ! function_exists( 'get_field' ) ) {
 $section_title = get_field( 'section_title' ) ?: 'OUR SPONSORS';
 $sponsors       = get_field( 'sponsors' );
 
-if ( empty( $sponsors ) ) {
+if ( empty( $sponsors ) || ! is_array( $sponsors ) ) {
     return;
 }
 
 // Agrupamos por nivel, respetando el orden en que aparecen las filas
 $tiers = array();
 foreach ( $sponsors as $sponsor ) {
-    $tier_name = trim( $sponsor['tier'] ) ?: 'General';
+    $tier_name = trim( (string) ( $sponsor['tier'] ?? '' ) ) ?: 'General';
     if ( ! isset( $tiers[ $tier_name ] ) ) {
         $tiers[ $tier_name ] = array();
     }
@@ -36,6 +36,7 @@ $first = true;
     <div class="prcw-sponsors__tabs">
       <?php foreach ( $tiers as $tier_name => $items ) : ?>
         <button
+          type="button"
           class="prcw-sponsors__tab <?php echo $first ? 'is-active' : ''; ?>"
           data-tab="<?php echo esc_attr( sanitize_title( $tier_name ) ); ?>"
         >
@@ -47,8 +48,8 @@ $first = true;
 
     <?php $first = true; ?>
     <?php foreach ( $tiers as $tier_name => $items ) :
-      $with_logo    = array_filter( $items, fn( $s ) => ! empty( $s['logo'] ) );
-      $without_logo = array_filter( $items, fn( $s ) => empty( $s['logo'] ) );
+      $with_logo    = array_filter( $items, fn( $s ) => is_array( $s['logo'] ?? null ) && ! empty( $s['logo']['url'] ) );
+      $without_logo = array_filter( $items, fn( $s ) => ( empty( $s['logo'] ) || ! is_array( $s['logo'] ) || empty( $s['logo']['url'] ) ) && ! empty( $s['name'] ) );
     ?>
       <div
         class="prcw-sponsors__panel <?php echo $first ? 'is-active' : ''; ?>"
@@ -57,9 +58,9 @@ $first = true;
         <?php if ( ! empty( $with_logo ) ) : ?>
           <div class="prcw-sponsors__grid">
             <?php foreach ( $with_logo as $sponsor ) :
-              $logo = $sponsor['logo'];
-              $url  = $sponsor['url'];
-              $sponsor_name = $sponsor['name'] ?? '';
+              $logo         = $sponsor['logo'];
+              $url          = $sponsor['url'] ?? '';
+              $sponsor_name = $sponsor['name'] ?? ( $logo['alt'] ?? '' );
 
               $img_html = sprintf(
                 '<img class="prcw-sponsors__logo" src="%s" alt="%s">',
@@ -81,7 +82,7 @@ $first = true;
         <?php if ( ! empty( $without_logo ) ) : ?>
           <p class="prcw-sponsors__list">
             <?php
-            $names = array_map( fn( $s ) => esc_html( $s['name'] ?? '' ), $without_logo );
+            $names = array_map( fn( $s ) => esc_html( (string) ( $s['name'] ?? '' ) ), $without_logo );
             echo implode( ', ', $names );
             ?>
           </p>
